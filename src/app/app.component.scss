@@ -1,35 +1,101 @@
 @import '~variables.scss';
+@import '~placeholders.scss';
 
+/*** HEADER ***/
 .header {
+	overflow: hidden;
 	width: 100%;
+	height: $m-header-height;
 	background-color: $c-header-bg;
 	
 	&-nav {
 		display: flex;
 		justify-content: flex-start;
+		height: 100%;
 		margin: 0 auto;
 		max-width: $m-content-max-width;
 
 		&__item {
 			display: block;
+			height: 100%;
 		}
 
 		&__link {
 			display: block;
+			box-sizing: border-box;
 			padding: 20px;
+			height: 100%;
 			color: white;
 			font-size: 1.8rem;
 			text-decoration: none;
 			transition: background-color .25s ease-in-out;
 
-			&.is-active,
 			&:hover {
-				background-color: darken($c-header-bg, 10%);
+				background-color: darken($c-header-bg, 7%);
 			}
-
+			
 			&.is-active {
+				background-color: darken($c-header-bg, 10%);
 				cursor: default;
 			}
 		}
 	}
+}
+
+/*** CONTENT ***/
+.content {
+	display: flex;
+	box-sizing: border-box;
+	justify-content: space-around;
+	padding: 5px 0;
+	height: calc(#{$m-content-height} - #{$m-header-height});
+	background-color: $c-content-bg;
+
+	&__item {
+		width: 49%;
+		background-color: $c-content-item-bg;
+		border: 1px solid $c-content-border;
+	}
+}
+
+/*** USER ***/
+.users-list {
+	@extend %reset-list;
+	margin: 0 auto;
+	width: 98%;
+
+	&__item {
+		margin-top: 5px;
+	}
+}
+
+
+.user {
+	box-sizing: border-box;
+	width: 100%;
+	padding: 10px;
+	border: 1px solid $c-user-border;
+
+	&__name {
+		margin: 0 0 1em;
+		padding: 0 0 .5em;
+		border-bottom: 1px solid $c-user-border;
+		font-size: 2.1rem;
+		line-height: 1;
+	}
+
+	&__company {
+		&-name {
+			@extend %user-text;
+		}
+
+		&-phrase {
+			@extend %user-text;
+		}
+	}
+}
+
+/*** TODO ***/
+.todo-list {
+	@extend %reset-list;
 }
