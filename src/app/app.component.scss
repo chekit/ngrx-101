@@ -1,0 +1,35 @@
+@import '~variables.scss';
+
+.header {
+	width: 100%;
+	background-color: $c-header-bg;
+	
+	&-nav {
+		display: flex;
+		justify-content: flex-start;
+		margin: 0 auto;
+		max-width: $m-content-max-width;
+
+		&__item {
+			display: block;
+		}
+
+		&__link {
+			display: block;
+			padding: 20px;
+			color: white;
+			font-size: 1.8rem;
+			text-decoration: none;
+			transition: background-color .25s ease-in-out;
+
+			&.is-active,
+			&:hover {
+				background-color: darken($c-header-bg, 10%);
+			}
+
+			&.is-active {
+				cursor: default;
+			}
+		}
+	}
+}
