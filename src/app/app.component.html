@@ -10,9 +10,18 @@
 </header>
 <main class="content">
   <section class="content__item">
+    <div class="filter">
+      <input type="text" class="filter__input">
+      <div class="filter__tag-list">
+        <button class="filter__tag is-selected">User 1</button>
+        <button class="filter__tag">User 1</button>
+        <button class="filter__tag">User 1</button>
+        <button class="filter__tag">User 1</button>
+      </div>
+    </div>
     <ul class="users-list">
       <li class="users-list__item">
-        <div class="user">
+        <div class="user is-current">
           <p class="user__name">Иванов Иван Иванович</p>
           <p class="user__company-name">Рога и копыта</p>
           <p class="user__company-phrase">Бодаем и топчем</p>
@@ -27,31 +36,42 @@
       </li>
     </ul>
   </section>
-  <section class="content__item">
+  <section class="content__item content__item--no-padding-tb">
+    <div class="content__item-header">
+      <h2>Иванов Иван Иванович ToDos</h2>
+    </div>
     <div class="user-info">
       <ul class="todo-list">
         <li class="todo-list__item">
           <div class="todo is-complete">
             <p class="todo__title">Todo 1</p>
-            <p class="todo__status">Выполнено</p>
+            <div class="todo__manage">
+                <button class="todo__manage-button">Выполнено/Не выполнено</button>
+              </div>
           </div>
         </li>
         <li class="todo-list__item">
           <div class="todo is-complete">
             <p class="todo__title">Todo 2</p>
-            <p class="todo__status">Выполнено</p>
+            <div class="todo__manage">
+                <button class="todo__manage-button">Выполнено/Не выполнено</button>
+              </div>
           </div>
         </li>
         <li class="todo-list__item">
           <div class="todo is-complete">
             <p class="todo__title">Todo 3</p>
-            <p class="todo__status">Выполнено</p>
+            <div class="todo__manage">
+                <button class="todo__manage-button">Выполнено/Не выполнено</button>
+              </div>
           </div>
         </li>
         <li class="todo-list__item">
-          <div class="todo is-complete">
+          <div class="todo">
             <p class="todo__title">Todo 4</p>
-            <p class="todo__status">Выполнено</p>
+            <div class="todo__manage">
+              <button class="todo__manage-button">Выполнено/Не выполнено</button>
+            </div>
           </div>
         </li>
       </ul>

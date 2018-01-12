@@ -6,8 +6,28 @@ $c-content-item-bg: #fff;
 $c-content-border: #ccc;
 
 $c-user-border: #eee;
+$c-user-content-hover-bg: #f3f3f3;
+$c-user-current-border: #edfff6;
+
+$c-todo-border: #eee;
+$c-todo-bg: #f8f8f8;
+$c-todo-complete-bg: #edfff6;
+$c-todo-complete-title-color: #444;
+$c-todo-button-border: #b9b9b9;
+$c-todo-button-complete-border: #a5a5a5;
+$c-todo-button-complete-bg: #76ce66;
+
+$c-content-item-header-bg: #1779ba;
+
+$c-filter-bg: #ccc;
+$c-filter-input-border: #bbb;
+
+$c-tag-selected-bg: #67ba17;
+$c-tag-hover-bg: #cecece;
 
 // M - Measures
 $m-content-max-width: 1024px;
 $m-header-height: 65px;
 $m-content-height: 100vh;
+$m-todo-title-max-width: 60%;
+$m-todo-button-height: 25px;
