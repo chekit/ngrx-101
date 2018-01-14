@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Users } from '../../models/users.model';
 import { AppService } from '../../app.service';
 import 'rxjs/add/operator/map';
+import { forkJoin } from 'rxjs/observable/forkJoin';
 
 @Component({
   selector: 'app-users',
@@ -23,9 +24,15 @@ export class UsersComponent implements OnInit {
   }
 
   public onUserSelect(id: number): void {
-    this.appService.getUser(id)
-      .subscribe(res => {
-        console.log(res);
+    forkJoin(
+      this.appService.getUser(id),
+      this.appService.getUserTodos(id)
+    )
+      .subscribe((res: any[]) => {
+        this.model.addCurrent({
+          user: res[0],
+         todos: res[1]
+        });
       });
   }
 

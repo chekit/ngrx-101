@@ -15,8 +15,8 @@ export class AppService {
     return new Users(usersList);
   }
 
-  public createTodosInstance() {
-    return new Todos();
+  public createTodosInstance(todosList: any[]) {
+    return new Todos(todosList);
   }
 
   public getUsers(): Observable<any> {
@@ -25,5 +25,13 @@ export class AppService {
 
   public getUser(id: number): Observable<any> {
     return this.http.get(`https://jsonplaceholder.typicode.com/users/${id}`);
+  }
+  
+  public getUserTodos(id: number): Observable<any> {
+    return this.http.get(`https://jsonplaceholder.typicode.com/todos?userId=${id}`);
+  }
+
+  public getTodos(): Observable<any> {
+    return this.http.get('https://jsonplaceholder.typicode.com/todos/');
   }
 }

@@ -6,11 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  // https://jsonplaceholder.typicode.com/
 
-  // https://jsonplaceholder.typicode.com/users/1
-
-  // https://jsonplaceholder.typicode.com/todos
-  
-  // https://jsonplaceholder.typicode.com/todos?userId=1
 }

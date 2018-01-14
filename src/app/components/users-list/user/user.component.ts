@@ -7,6 +7,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class UserComponent implements OnInit {
   @Input() public model: any;
+  @Input() public isCurrent: boolean = false;
+
   @Output() userSelected: EventEmitter<number> = new EventEmitter();
 
   constructor() { }
@@ -15,7 +17,9 @@ export class UserComponent implements OnInit {
   }
 
   public selectUser(): void {
-    this.userSelected.emit(this.model.id);
+    if (!this.isCurrent) {
+      this.userSelected.emit(this.model.id);
+    }
   }
 
 }

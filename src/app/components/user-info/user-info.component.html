@@ -1,6 +1,6 @@
 <div class="user-info">
   <div class="user-info__header">
-    <h2>Иванов Иван Иванович ToDos</h2>
+    <h2>{{model?.user.name}} ToDos</h2>
   </div>
-  <app-todo-list></app-todo-list>
+  <app-todo-list [model]="model?.todos"></app-todo-list>
 </div>

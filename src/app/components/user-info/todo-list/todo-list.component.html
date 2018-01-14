@@ -1,14 +1,5 @@
 <ul class="todo-list">
-  <li class="todo-list__item">
-    <app-todo></app-todo>
-  </li>
-  <li class="todo-list__item">
-      <app-todo></app-todo>
-  </li>
-  <li class="todo-list__item">
-      <app-todo></app-todo>
-  </li>
-  <li class="todo-list__item">
-      <app-todo></app-todo>
+  <li class="todo-list__item" *ngFor="let todo of model; trackBy: trackById">
+    <app-todo [model]="todo"></app-todo>
   </li>
 </ul>

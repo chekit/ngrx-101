@@ -21,5 +21,25 @@
 			padding-top: 0;
 			padding-bottom: 0;
 		}
+
+		&.is-empty {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			background-color: transparent;
+			border-color: transparent;
+		}
+
+		&-text {
+			margin: 0;
+
+			.is-empty & {
+				font-size: 2.1rem;
+				line-height: 1;
+				color: $c-content-empty-text;
+				text-shadow: 1px 1px 0 rgba(255, 255, 255, .35);
+			}
+		}
 	}
 }

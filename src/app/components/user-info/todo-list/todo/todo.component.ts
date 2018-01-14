@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-todo',
@@ -8,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class TodoComponent implements OnInit {
   public isComplete = false;
 
+  @Input() public model: any;
+
   constructor() { }
 
   ngOnInit() {
+    this.isComplete = this.model.completed;
   }
 
   public switchCompletion(): void {

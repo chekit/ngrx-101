@@ -7,7 +7,7 @@ import { Users } from '../../models/users.model';
   styleUrls: ['./users-list.component.scss']
 })
 export class UsersListComponent implements OnInit {
-  @Input() public model: any[];
+  @Input() public model: Users;
   @Output() userSelect: EventEmitter<number> = new EventEmitter();
 
   constructor() { }
@@ -15,8 +15,8 @@ export class UsersListComponent implements OnInit {
   ngOnInit() {
   }
 
-  public trackById(id: number): number {
-    return id;
+  public trackById(index: number, user: any): number {
+    return user.id;
   }
 
   public onUserSelected(number: number): void {
