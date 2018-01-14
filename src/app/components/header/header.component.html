@@ -1,0 +1,10 @@
+<header class="header">
+  <ul class="header-nav">
+    <li class="header-nav__item">
+      <a [routerLink]="['/users']" class="header-nav__link" [class.is-active]="route === ROUTES_NAMES.USERS">Users</a>
+    </li>
+    <li class="header-nav__item">
+      <a [routerLink]="['/todos']" class="header-nav__link" [class.is-active]="route === ROUTES_NAMES.TODOS">Todos</a>
+    </li>
+  </ul>
+</header>

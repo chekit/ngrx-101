@@ -1,0 +1,77 @@
+@import '~variables.scss';
+@import '~placeholders.scss';
+
+/*** TODO ***/
+.todo {
+	position: relative;
+	background-color: $c-todo-bg;
+	transition: background-color .25s ease-in-out;
+
+	&.is-complete {
+		background-color: $c-todo-complete-bg;
+	}
+
+	&__title {
+		margin: 0;
+		padding: 5px;
+		font-size: 1.6em;
+		font-weight: bold;
+		max-width: $m-todo-title-max-width;
+		
+		.is-complete & {
+			color: $c-todo-complete-title-color;
+		}
+	}
+
+	&__manage {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		margin: auto 10px auto 0;
+		height: 30px;
+
+		&-button {
+			position: relative;
+			border-radius: 14px;
+			height: $m-todo-button-height;
+			width: $m-todo-button-height * 2;
+			border: 1px solid $c-todo-button-border;
+			text-indent: -9999px;
+			outline: none;
+			transition: all .15s ease-in-out;
+			box-shadow: inset -2px 1px 4px rgba(0, 0, 0, .15);
+			cursor: pointer;
+
+			.is-complete & {
+				background-color: $c-todo-button-complete-bg;
+				border-color: $c-todo-button-complete-border;
+			}
+
+			&:after {
+				box-sizing: border-box;
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 1px;
+				margin: auto;
+				width: $m-todo-button-height - 4px;
+				height: $m-todo-button-height - 4px;
+				background-color: #fff;
+				border: 1px solid darken($c-todo-button-border, 10%);
+				border-radius: 50%;
+				
+				content: '';
+
+				.is-complete & {
+					left: auto;
+					right: 1px;
+				}
+			}
+		}
+	}
+
+}

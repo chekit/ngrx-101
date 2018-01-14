@@ -1,0 +1,17 @@
+@import '~variables.scss';
+@import '~placeholders.scss';
+
+.user-info {
+	&__header {
+		box-sizing: border-box;
+		padding: 10px 20px;
+		background-color: $c-content-item-header-bg;
+		
+		h2 {
+			margin: 0;
+			color: white;
+			line-height: 1;
+			font-size: 1.8rem;
+		}
+	}
+}

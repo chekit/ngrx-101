@@ -1,0 +1,42 @@
+@import '~variables.scss';
+@import '~placeholders.scss';
+
+/*** FILTER ***/
+.filter {
+	box-sizing: border-box;
+	padding: 10px;
+	margin-bottom: 10px;
+	background-color: $c-filter-bg;
+
+	&__input {
+		box-sizing: border-box;
+		width: 100%;
+		padding: 10px;
+		height: 1.4 * 10 + 20px;
+		border: 1px solid $c-filter-input-border;
+		border-radius: 3px;
+		font-size: 1.4rem;
+		line-height: 1;
+	}
+
+	&__tag {
+		padding: 10px 20px;
+		border: 1px solid $c-filter-input-border;
+		border-radius: 5px;
+		font-size: 1.4rem;
+		font-weight: bold;
+		line-height: 1;
+		outline: none;
+		transition: background-color .15s ease-in-out;
+		cursor: pointer;
+
+		&:hover {
+			background-color: $c-tag-hover-bg;
+		}
+
+		&.is-selected {
+			background-color: $c-tag-selected-bg;
+			color: white;
+		}
+	}
+}

@@ -1,0 +1,16 @@
+@import '~variables.scss';
+@import '~placeholders.scss';
+
+.users-list {
+	@extend %reset-list;
+	margin: 0 auto 5px;
+	width: 98%;
+
+	&__item {
+		margin-bottom: 5px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}

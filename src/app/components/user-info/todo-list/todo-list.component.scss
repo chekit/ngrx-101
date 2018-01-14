@@ -1,0 +1,13 @@
+@import '~variables.scss';
+@import '~placeholders.scss';
+
+.todo-list {
+	@extend %reset-list;
+	margin: 10px auto;
+	width: 98%;
+
+	&__item {
+		margin-bottom: 10px;
+		border-bottom: 1px solid $c-todo-border;
+	}
+}

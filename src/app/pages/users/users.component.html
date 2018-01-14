@@ -1,0 +1,9 @@
+<main class="content">
+  <section class="content__item content__item--no-padding-tb">
+    <app-filter [style]="'search'"></app-filter>
+    <app-users-list [model]="model?.getUsers()" (userSelect)="onUserSelect($event)"></app-users-list>
+  </section>
+  <section class="content__item content__item--no-padding-tb">
+    <app-user-info></app-user-info>
+  </section>
+</main>

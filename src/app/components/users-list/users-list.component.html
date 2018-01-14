@@ -1,0 +1,5 @@
+<ul class="users-list">
+  <li class="users-list__item" *ngFor="let user of model; trackBy: trackById">
+    <app-user [model]="user" (userSelected)="onUserSelected($event)"></app-user>
+  </li>
+</ul>

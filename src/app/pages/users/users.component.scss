@@ -1,0 +1,25 @@
+@import '~variables.scss';
+@import '~placeholders.scss';
+
+/*** CONTENT ***/
+.content {
+	display: flex;
+	box-sizing: border-box;
+	justify-content: space-around;
+	padding: 5px 0;
+	height: calc(#{$m-content-height} - #{$m-header-height});
+	background-color: $c-content-bg;
+	
+	&__item {
+		overflow: auto;
+		padding: 5px 0;
+		width: 49%;
+		background-color: $c-content-item-bg;
+		border: 1px solid $c-content-border;
+
+		&--no-padding-tb {
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+	}
+}
