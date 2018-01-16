@@ -2,10 +2,14 @@
   <div class="filter__search" *ngIf="isSearch">
     <input type="text" class="filter__input" [(ngModel)]="query" [ngModelOptions]="{debounce: 300}" (ngModelChange)="filter($event)" >
   </div>
-  <div class="filter__tag-list" *ngIf="isTags">
-    <button class="filter__tag is-selected">User 1</button>
-    <button class="filter__tag">User 1</button>
-    <button class="filter__tag">User 1</button>
-    <button class="filter__tag">User 1</button>
+  <div class="filter__tag-list" *ngIf="isTags && tagList?.size > 0">
+    <button 
+      class="filter__tag" 
+      *ngFor="let tag of tagList; trackBy: tracByIndex;"
+      [class.is-current]="currentTag === tag" 
+      (click)="selectByTag(tag)"
+    >{{tag}}</button>
+    <hr />
+    <button class="filter__tag" (click)="selectByTag(null)" *ngIf="currentTag">Reset</button>
   </div>
 </div>

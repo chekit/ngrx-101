@@ -1,6 +1,28 @@
 <div class="user-info">
   <div class="user-info__header">
-    <h2>{{model?.user.name}} ToDos</h2>
+    <h2>{{model?.user.name}} {{model?.todos ? 'ToDos' : ''}}</h2>
   </div>
-  <app-todo-list [model]="model?.todos"></app-todo-list>
+  <div class="user-info__personal" *ngIf="hasPersonal()">
+    <p class="user-info__text">
+      <span class="user-info__text-label">Имя:</span>&nbsp;
+      {{model.user.name}}
+    </p>
+    <p class="user-info__text">
+      <span class="user-info__text-label">Email:</span>&nbsp;
+      {{model.user.email}}
+    </p>
+    <p class="user-info__text">
+      <span class="user-info__text-label">Телефон:</span>&nbsp;
+      {{model.user.phone}}
+    </p>
+    <p class="user-info__text">
+      <span class="user-info__text-label">Пользователь:</span>&nbsp;
+      {{model.user.username}}
+    </p>
+    <p class="user-info__text">
+      <span class="user-info__text-label">Сайт:</span>&nbsp;
+      {{model.user.website}}
+    </p>
+  </div>
+  <app-user-todo-list [model]="model?.todos"></app-user-todo-list>
 </div>

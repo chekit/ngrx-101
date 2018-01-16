@@ -13,4 +13,12 @@ export class UserInfoComponent implements OnInit {
   ngOnInit() {
   }
 
+  public hasPersonal(): boolean {
+    return !!this.model.user.name && 
+    !!this.model.user.email && 
+    !!this.model.user.phone && 
+    !!this.model.user.username && 
+    !!this.model.user.website && 
+    !this.model.todos;
+  }
 }

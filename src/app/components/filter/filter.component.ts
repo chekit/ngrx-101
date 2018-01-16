@@ -12,12 +12,15 @@ enum FilterStyles {
 })
 export class FilterComponent implements OnInit {
   @Input() public style: string;
+  @Input() public tagList: Set<string> = new Set();
+
   @Output() public filterList: EventEmitter<string> = new EventEmitter();
   
   public query: string = null;
 
   public isSearch: boolean = false;
   public isTags: boolean = false;
+  public currentTag: string = null;
 
   constructor() { }
 
@@ -34,5 +37,15 @@ export class FilterComponent implements OnInit {
 
   public filter(query: string): void {
     this.filterList.emit(query);
+  }
+
+  public tracByIndex(index: number): number {
+    return index;
+  }
+
+  public selectByTag(tagName: string) {
+    this.currentTag = !!tagName ? tagName : null;
+
+    this.filterList.emit(this.currentTag);
   }
 }

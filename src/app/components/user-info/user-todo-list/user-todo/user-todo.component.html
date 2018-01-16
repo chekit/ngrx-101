@@ -1,7 +1,6 @@
 <div class="todo" [class.is-complete]="isComplete">
   <p class="todo__title">{{model.title}}</p>
   <div class="todo__manage">
-    <!-- НУЖНО ВЕРНУТЬ КНОПКУ, ЧТОБЫ КОМПОНЕНТА БЫЛА ЦЕЛЬНОЙ  -->
     <button class="todo__manage-button" (click)="switchCompletion()">Выполнено/Не выполнено</button>
   </div>
 </div>

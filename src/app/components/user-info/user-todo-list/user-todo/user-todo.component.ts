@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-todo',
-  templateUrl: './todo.component.html',
-  styleUrls: ['./todo.component.scss']
+  selector: 'app-user-todo',
+  templateUrl: './user-todo.component.html',
+  styleUrls: ['./user-todo.component.scss']
 })
-export class TodoComponent implements OnInit {
+export class UserTodoComponent implements OnInit {
   public isComplete = false;
 
   @Input() public model: any;

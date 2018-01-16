@@ -5,10 +5,12 @@ import { RouterModule } from '@angular/router';
 import { FilterComponent } from './filter/filter.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { UserComponent } from './users-list/user/user.component';
-import { TodoListComponent } from './user-info/todo-list/todo-list.component';
+import { UserTodoListComponent } from './user-info/user-todo-list/user-todo-list.component';
 import { UserInfoComponent } from './user-info/user-info.component';
-import { TodoComponent } from './user-info/todo-list/todo/todo.component';
+import { UserTodoComponent } from './user-info/user-todo-list/user-todo/user-todo.component';
 import { FormsModule } from '@angular/forms';
+import { TodosListComponent } from './todos-list/todos-list.component';
+import { TodosItemComponent } from './todos-list/todos-item/todos-item.component';
 
 @NgModule({
   imports: [
@@ -19,17 +21,22 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     HeaderComponent,
     FilterComponent,
+    /*** User ***/
     UsersListComponent,
     UserComponent,
-    TodoListComponent,
+    UserTodoListComponent,
     UserInfoComponent,
-    TodoComponent
+    UserTodoComponent,
+    /*** Todo ***/
+    TodosListComponent,
+    TodosItemComponent
   ],
   exports: [
     HeaderComponent,
     FilterComponent,
     UsersListComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    TodosListComponent
   ]
 })
 export class ComponentsModule { }

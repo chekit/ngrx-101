@@ -12,6 +12,15 @@
 		width: 100%;
 	}
 
+	&__tag-list {
+		width: 100%;
+
+		hr {
+			border: none;
+			border-bottom: 1px solid #eee;
+		}
+	}
+
 	&__input {
 		box-sizing: border-box;
 		width: 100%;
@@ -24,6 +33,7 @@
 	}
 
 	&__tag {
+		margin: 0 10px 10px 0;
 		padding: 10px 20px;
 		border: 1px solid $c-filter-input-border;
 		border-radius: 5px;
@@ -38,7 +48,12 @@
 			background-color: $c-tag-hover-bg;
 		}
 
-		&.is-selected {
+		&:last-child {
+			margin-right: 0;
+		}
+
+		&.is-selected,
+		&.is-current {
 			background-color: $c-tag-selected-bg;
 			color: white;
 		}

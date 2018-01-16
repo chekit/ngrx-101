@@ -21,7 +21,7 @@ export class Users {
 		return !!this.currentUser;
 	}
 
-	public addCurrent(info: ICurrent): Users {
+	public setCurrent(info: ICurrent): Users {
 		this.currentUser = info;
 
 		return this;
@@ -29,11 +29,12 @@ export class Users {
 
 	public updateQuery(query: string): Users {
 		this.query = query.toLocaleLowerCase();
-
+		this.setCurrent(null);
+		
 		return this;
 	}
 
 	private filterList(query, list) {
-		return list.filter(u => u.name.toLowerCase().indexOf(query) > -1);
+		return !!query ? list.filter(u => u.name.toLowerCase().indexOf(query) > -1) : list;
 	}
 }

@@ -1,0 +1,17 @@
+@import './../../users-list/user/user.component';
+
+.todo {
+	@extend .user;
+
+	&__title {
+		@extend .user__name;
+
+		span {
+			color: lighten($color: #444, $amount: 15%)
+		}
+	}
+
+	&__owner {
+		@extend %user-text;
+	}
+}

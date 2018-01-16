@@ -1,0 +1,9 @@
+@import './../users-list/users-list.component';
+
+.todos-list {
+	@extend .users-list;
+
+	&__item {
+		@extend .users-list__item;
+	}
+}

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../../app.service';
 import { Todos } from '../../models/todos.model';
+import { ICurrentTodo } from '../../components/todos-list/todos-item/todos-item.component';
 
 @Component({
-  selector: 'app-todos',
+  selector: 'app-user-todos',
   templateUrl: './todos.component.html',
   styleUrls: ['./todos.component.scss']
 })
@@ -21,4 +22,12 @@ export class TodosComponent implements OnInit {
       });
   }
 
+  public onTodoSelect(info: ICurrentTodo): void {
+    this.appService.getUser(info.user)
+      .subscribe((user: any) => this.model.setCurrent({ user, id: info.todo }));
+  }
+
+  public onFilterTodosList(tag: string): void {
+    this.model.updateTag(tag);
+  }
 }

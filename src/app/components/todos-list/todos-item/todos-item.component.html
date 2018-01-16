@@ -1,0 +1,4 @@
+<div class="todo" (click)="selectTodo()" [class.is-current]="isCurrent">
+  <p class="todo__title"><span>Задача:</span> {{model.title}}</p>
+  <p class="todo__owner"><strong>Владелец:</strong> User{{model.userId}}</p>
+</div>

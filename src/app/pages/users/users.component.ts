@@ -29,7 +29,7 @@ export class UsersComponent implements OnInit {
       this.appService.getUserTodos(id)
     )
       .subscribe((res: any[]) => {
-        this.model.addCurrent({
+        this.model.setCurrent({
           user: res[0],
          todos: res[1]
         });
