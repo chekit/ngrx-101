@@ -1,6 +1,6 @@
 <div class="filter">
   <div class="filter__search" *ngIf="isSearch">
-    <input type="text" class="filter__input">
+    <input type="text" class="filter__input" [(ngModel)]="query" [ngModelOptions]="{debounce: 10000}" (ngModelChange)="filter($event)" >
   </div>
   <div class="filter__tag-list" *ngIf="isTags">
     <button class="filter__tag is-selected">User 1</button>

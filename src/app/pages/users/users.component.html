@@ -1,6 +1,6 @@
 <main class="content">
   <section class="content__item content__item--no-padding-tb">
-    <app-filter [style]="'search'"></app-filter>
+    <app-filter [style]="'search'" (filterList)="onFilterUsersList($event)"></app-filter>
     <app-users-list [model]="model" (userSelect)="onUserSelect($event)"></app-users-list>
   </section>
   <section class="content__item content__item--no-padding-tb" [class.is-empty]="!model?.hasCurrent()">

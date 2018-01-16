@@ -36,4 +36,7 @@ export class UsersComponent implements OnInit {
       });
   }
 
+  public onFilterUsersList(query: string): void {
+    this.model.updateQuery(query);
+  }
 }

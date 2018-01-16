@@ -8,11 +8,13 @@ import { UserComponent } from './users-list/user/user.component';
 import { TodoListComponent } from './user-info/todo-list/todo-list.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { TodoComponent } from './user-info/todo-list/todo/todo.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
   declarations: [
     HeaderComponent,

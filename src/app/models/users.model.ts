@@ -5,13 +5,12 @@ interface ICurrent {
 
 export class Users {
 	private currentUser: any = null;
+	private query: string = '';
 
-	constructor(private list: any[]) {
-
-	}
+	constructor(private list: any[]) {}
 
 	public getUsers(): any[] {
-		return this.list;
+		return this.filterList(this.query, this.list);
 	}
 
 	public getCurrent(): any {
@@ -26,5 +25,15 @@ export class Users {
 		this.currentUser = info;
 
 		return this;
+	}
+
+	public updateQuery(query: string): Users {
+		this.query = query.toLocaleLowerCase();
+
+		return this;
+	}
+
+	private filterList(query, list) {
+		return list.filter(u => u.name.toLowerCase().indexOf(query) > -1);
 	}
 }

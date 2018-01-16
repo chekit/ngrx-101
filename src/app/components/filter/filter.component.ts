@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 enum FilterStyles {
   SEARCH = 'search',
@@ -12,6 +12,9 @@ enum FilterStyles {
 })
 export class FilterComponent implements OnInit {
   @Input() public style: string;
+  @Output() public filterList: EventEmitter<string> = new EventEmitter();
+  
+  public query: string = null;
 
   public isSearch: boolean = false;
   public isTags: boolean = false;
@@ -29,4 +32,7 @@ export class FilterComponent implements OnInit {
     }
   }
 
+  public filter(query: string): void {
+    this.filterList.emit(query);
+  }
 }
