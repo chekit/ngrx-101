@@ -3,11 +3,18 @@ interface ICurrent {
 	user: any;
 }
 
+export interface ITodo {
+	completed: boolean;
+	id: number;
+	title: number;
+	userId: number;
+}
+
 export class Todos {
 	private current: any = null;
 	private filterTag: string = '';
 
-	constructor(private list: any[]) {
+	constructor(private list: ITodo[]) {
 
 	}
 
@@ -15,7 +22,7 @@ export class Todos {
 		return !!this.current;
 	}
 
-	public getTodos(): any[] {
+	public getTodos(): ITodo[] {
 		return this.filterTodoList(this.filterTag, this.list);
 	}
 
@@ -25,7 +32,7 @@ export class Todos {
 		return this;
 	}
 
-	public getCurrent(): any {
+	public getCurrent(): ICurrent {
 		return this.current;
 	}
 
@@ -44,7 +51,7 @@ export class Todos {
 		this.filterTag = tagName;
 	}
 
-	private filterTodoList(tagName: string, list: any[]) {
+	private filterTodoList(tagName: string, list: ITodo[]): ITodo[] {
 		return !!tagName ? list.filter(t => `User ${t.userId}` === tagName) : list;
 	}
 }

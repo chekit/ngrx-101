@@ -3,17 +3,28 @@ interface ICurrent {
 	todos: any;
 }
 
+export interface IUser {
+	address?: any;
+	company?: any;
+	email: string;
+	id: number;
+	name: string;
+	phone: string;
+	username: string;
+	website: string;
+}
+
 export class Users {
-	private currentUser: any = null;
+	private currentUser: ICurrent = null;
 	private query: string = '';
 
-	constructor(private list: any[]) {}
+	constructor(private list: IUser[]) {}
 
-	public getUsers(): any[] {
+	public getUsers(): IUser[] {
 		return this.filterList(this.query, this.list);
 	}
 
-	public getCurrent(): any {
+	public getCurrent(): ICurrent {
 		return this.currentUser;
 	}
 
@@ -34,7 +45,7 @@ export class Users {
 		return this;
 	}
 
-	private filterList(query, list) {
+	private filterList(query: string, list: IUser[]): IUser[] {
 		return !!query ? list.filter(u => u.name.toLowerCase().indexOf(query) > -1) : list;
 	}
 }
