@@ -22,11 +22,21 @@ export class TodosComponent implements OnInit {
       });
   }
 
+  /**
+   * Handler события выбора задания
+   * 
+   * @param {ICurrentTodo} info 
+   */
   public onTodoSelect(info: ICurrentTodo): void {
     this.appService.getUser(info.user)
       .subscribe((user: any) => this.model.setCurrent({ user, id: info.todo }));
   }
 
+  /**
+   * Handler события фильтрации списка
+   * 
+   * @param {string} tag 
+   */
   public onFilterTodosList(tag: string): void {
     this.model.updateTag(tag);
   }

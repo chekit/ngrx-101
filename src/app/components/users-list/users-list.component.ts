@@ -19,6 +19,11 @@ export class UsersListComponent implements OnInit {
     return user.id;
   }
 
+  /**
+   * Handler для события выбора пользователя
+   * 
+   * @param {number} number 
+   */
   public onUserSelected(number: number): void {
     this.userSelect.emit(number);
   }

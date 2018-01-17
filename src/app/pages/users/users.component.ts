@@ -23,6 +23,11 @@ export class UsersComponent implements OnInit {
       });
   }
 
+  /**
+   * Handler выбора пользователя
+   * 
+   * @param {number} id 
+   */
   public onUserSelect(id: number): void {
     forkJoin(
       this.appService.getUser(id),
@@ -36,6 +41,11 @@ export class UsersComponent implements OnInit {
       });
   }
 
+  /**
+   * Handler фидьтрации списка пользователей
+   * 
+   * @param {string} query 
+   */
   public onFilterUsersList(query: string): void {
     this.model.updateQuery(query);
   }

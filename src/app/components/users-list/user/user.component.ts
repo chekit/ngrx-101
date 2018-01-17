@@ -16,6 +16,10 @@ export class UserComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Выбор пользователя
+   * 
+   */
   public selectUser(): void {
     if (!this.isCurrent) {
       this.userSelected.emit(this.model.id);

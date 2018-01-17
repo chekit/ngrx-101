@@ -20,6 +20,11 @@ export class TodosListComponent implements OnInit {
     return item.id;
   } 
 
+  /**
+   * Handler события выбора задания
+   * 
+   * @param {ICurrentTodo} $event 
+   */
   public onTodoSelected($event: ICurrentTodo) {
     this.selectTodo.emit($event);
   }

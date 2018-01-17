@@ -21,6 +21,10 @@ export class TodosItemComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Handler выбора задания
+   * 
+   */
   public selectTodo() {
     if (!this.isCurrent) {
       this.todoSelected.emit({ user: this.model.userId, todo: this.model.id });

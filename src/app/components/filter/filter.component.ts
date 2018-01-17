@@ -11,8 +11,18 @@ enum FilterStyles {
   styleUrls: ['./filter.component.scss']
 })
 export class FilterComponent implements OnInit {
-  @Input() public style: string;
   @Input() public tagList: Set<string> = new Set();
+  
+  @Input() public set style(value: string) {
+    switch (value) {
+      case FilterStyles.SEARCH:
+        this.isSearch = true;
+        break;
+      case FilterStyles.TAGS:
+        this.isTags = true;
+        break;
+    }
+  };
 
   @Output() public filterList: EventEmitter<string> = new EventEmitter();
   
@@ -24,17 +34,13 @@ export class FilterComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    switch(this.style) {
-      case FilterStyles.SEARCH:
-        this.isSearch = true;
-        break;
-      case FilterStyles.TAGS:
-        this.isTags = true;
-        break;
-    }
-  }
+  ngOnInit() { }
 
+  /**
+   * Handler для поисковой строки
+   * 
+   * @param {string} query 
+   */
   public filter(query: string): void {
     this.filterList.emit(query);
   }
@@ -43,6 +49,11 @@ export class FilterComponent implements OnInit {
     return index;
   }
 
+  /**
+   * Handler для тэгов
+   * 
+   * @param {string} tagName 
+   */
   public selectByTag(tagName: string) {
     this.currentTag = !!tagName ? tagName : null;
 

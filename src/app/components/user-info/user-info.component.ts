@@ -13,6 +13,11 @@ export class UserInfoComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Можем ли отображать персональные данные
+   * 
+   * @returns {boolean} 
+   */
   public hasPersonal(): boolean {
     return !!this.model.user.name && 
     !!this.model.user.email && 

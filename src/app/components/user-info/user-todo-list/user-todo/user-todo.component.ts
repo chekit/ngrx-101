@@ -16,6 +16,10 @@ export class UserTodoComponent implements OnInit {
     this.isComplete = this.model.completed;
   }
 
+  /**
+   * Переключатель статуса задания
+   * 
+   */
   public switchCompletion(): void {
     this.isComplete = !this.isComplete;
   }
