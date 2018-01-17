@@ -1,7 +1,12 @@
 <main class="content">
     <section class="content__item content__item--no-padding-tb">
-      <app-filter [style]="'tags'" [tagList]="model?.getTagList()" (filterList)="onFilterTodosList($event)"></app-filter>
-      <app-user-todos-list [model]="model" (selectTodo)="onTodoSelect($event)"></app-user-todos-list>
+      <div class="content__item-loading" *ngIf="isLoading">
+        Loading...
+      </div>
+      <div *ngIf="!isLoading">
+        <app-filter [style]="'tags'" [tagList]="model?.getTagList()" (filterList)="onFilterTodosList($event)"></app-filter>
+        <app-user-todos-list [model]="model" (selectTodo)="onTodoSelect($event)"></app-user-todos-list>
+      </div>
     </section>
     <section class="content__item content__item--no-padding-tb" [class.is-empty]="!model?.hasCurrent()">
       <app-user-info *ngIf="model?.hasCurrent()" [model]="model?.getCurrent()"></app-user-info>

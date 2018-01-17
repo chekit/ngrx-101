@@ -1,5 +1,6 @@
-<ul class="users-list">
+<ul class="users-list" *ngIf="model?.getUsers().length > 0">
   <li class="users-list__item" *ngFor="let user of model?.getUsers(); trackBy: trackById">
     <app-user [model]="user" [isCurrent]="user.id === model?.getCurrent()?.user.id" (userSelected)="onUserSelected($event)"></app-user>
   </li>
 </ul>
+<p class="users-list-empty" *ngIf=" model?.getUsers().length === 0">No Users to Show</p>  

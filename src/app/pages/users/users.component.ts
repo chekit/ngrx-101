@@ -11,6 +11,7 @@ import { forkJoin } from 'rxjs/observable/forkJoin';
 })
 export class UsersComponent implements OnInit {
   public model: Users = null;
+  public isLoading: boolean = true;
 
   constructor(
     private appService: AppService
@@ -19,6 +20,7 @@ export class UsersComponent implements OnInit {
   ngOnInit() {
     this.appService.getUsers()
       .subscribe(res => {
+        this.isLoading = false;
         this.model = this.appService.createUsersInstance(res);
       });
   }

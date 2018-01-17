@@ -10,6 +10,7 @@ import { ICurrentTodo } from '../../components/todos-list/todos-item/todos-item.
 })
 export class TodosComponent implements OnInit {
   public model: Todos = null;
+  public isLoading: boolean = true;
 
   constructor(
     private appService: AppService
@@ -18,6 +19,7 @@ export class TodosComponent implements OnInit {
   ngOnInit() {
     this.appService.getTodos()
       .subscribe(res => {
+        this.isLoading = false;
         this.model = this.appService.createTodosInstance(res);
       });
   }

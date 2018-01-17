@@ -6,4 +6,8 @@
 	&__item {
 		@extend .users-list__item;
 	}
+	
+	&-empty {
+		@extend .users-list-empty;
+	}
 }
