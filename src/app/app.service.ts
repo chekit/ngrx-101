@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Users } from './models/users.model';
-import { Todos } from './models/todos.model';
+import { UsersModel } from './models/users/users.model';
+import { Todos } from './models/todos/todos.model';
 import { Observable } from 'rxjs/Observable';
+import { ITodo, Todo } from './models/todos/todo.model';
+import { IUser, UserModel } from './models/users/user.model';
 
 @Injectable()
 export class AppService {
@@ -18,7 +20,7 @@ export class AppService {
    * @returns 
    */
   public createUsersInstance(usersList: any[]) {
-    return new Users(usersList);
+    return new UsersModel(usersList);
   }
 
   /**
@@ -36,8 +38,9 @@ export class AppService {
    * 
    * @returns {Observable<any>} 
    */
-  public getUsers(): Observable<any> {
-    return this.http.get('https://jsonplaceholder.typicode.com/users/');
+  public getUsers(): Observable<UserModel[]> {
+    return this.http.get('https://jsonplaceholder.typicode.com/users/')
+      .map((res: IUser[]) => res.map(i => (new UserModel(i))));
   }
 
   /**
@@ -46,8 +49,9 @@ export class AppService {
    * @param {number} id 
    * @returns {Observable<any>} 
    */
-  public getUser(id: number): Observable<any> {
-    return this.http.get(`https://jsonplaceholder.typicode.com/users/${id}`);
+  public getUser(id: number): Observable<UserModel> {
+    return this.http.get(`https://jsonplaceholder.typicode.com/users/${id}`)
+      .map((res: IUser) => (new UserModel(res)));
   }
   
   /**
@@ -56,8 +60,9 @@ export class AppService {
    * @param {number} id 
    * @returns {Observable<any>} 
    */
-  public getUserTodos(id: number): Observable<any> {
-    return this.http.get(`https://jsonplaceholder.typicode.com/todos?userId=${id}`);
+  public getUserTodos(id: number): Observable<Todo[]> {
+    return this.http.get(`https://jsonplaceholder.typicode.com/todos?userId=${id}`)
+      .map((res: ITodo[]) => res.map(i => (new Todo(i))));
   }
 
   /**
@@ -65,7 +70,8 @@ export class AppService {
    * 
    * @returns {Observable<any>} 
    */
-  public getTodos(): Observable<any> {
-    return this.http.get('https://jsonplaceholder.typicode.com/todos/');
+  public getTodos(): Observable<Todo[]> {
+    return this.http.get('https://jsonplaceholder.typicode.com/todos/')
+      .map((res: ITodo[]) => res.map(i => (new Todo(i))));
   }
 }

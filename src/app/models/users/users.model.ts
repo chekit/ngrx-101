@@ -1,18 +1,7 @@
-interface ICurrent {
-	user: any;
-	todos: any;
-}
+import { UserModel } from './user.model';
+import { UserInfoModel } from './user-info.model';
 
-export interface IUser {
-	address?: any;
-	company?: any;
-	email: string;
-	id: number;
-	name: string;
-	phone: string;
-	username: string;
-	website: string;
-}
+
 
 /**
  * Модель страницы пользователей
@@ -20,18 +9,18 @@ export interface IUser {
  * @export
  * @class Users
  */
-export class Users {
-	private currentUser: ICurrent = null;
+export class UsersModel {
+	private currentUser: UserInfoModel = null;
 	private query: string = '';
 
-	constructor(private list: IUser[]) {}
+	constructor(private list: UserModel[]) {}
 
 	/**
 	 * Список отфильтрованных пользователей
 	 * 
 	 * @returns {IUser[]} 
 	 */
-	public getUsers(): IUser[] {
+	public getUsers(): UserModel[] {
 		return this.filterList(this.query, this.list);
 	}
 
@@ -40,7 +29,7 @@ export class Users {
 	 * 
 	 * @returns {ICurrent} 
 	 */
-	public getCurrent(): ICurrent {
+	public getCurrent(): UserInfoModel {
 		return this.currentUser;
 	}
 
@@ -59,7 +48,7 @@ export class Users {
 	 * @param {ICurrent} info 
 	 * @returns {Users} 
 	 */
-	public setCurrent(info: ICurrent): Users {
+	public setCurrent(info: UserInfoModel): UsersModel {
 		this.currentUser = info;
 
 		return this;
@@ -71,7 +60,7 @@ export class Users {
 	 * @param {string} query 
 	 * @returns {Users} 
 	 */
-	public updateQuery(query: string): Users {
+	public updateQuery(query: string): UsersModel {
 		this.query = query.toLocaleLowerCase();
 		this.setCurrent(null);
 		
@@ -86,7 +75,7 @@ export class Users {
 	 * @param {IUser[]} list 
 	 * @returns {IUser[]} 
 	 */
-	private filterList(query: string, list: IUser[]): IUser[] {
+	private filterList(query: string, list: UserModel[]): UserModel[] {
 		return !!query ? list.filter(u => u.name.toLowerCase().indexOf(query) > -1) : list;
 	}
 }

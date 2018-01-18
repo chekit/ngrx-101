@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Users } from '../../models/users.model';
+import { UsersModel } from '../../models/users/users.model';
 import { AppService } from '../../app.service';
 import 'rxjs/add/operator/map';
 import { forkJoin } from 'rxjs/observable/forkJoin';
+import { IUser, UserModel } from '../../models/users/user.model';
+import { UserInfoModel } from '../../models/users/user-info.model';
 
 @Component({
   selector: 'app-users',
@@ -10,7 +12,7 @@ import { forkJoin } from 'rxjs/observable/forkJoin';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  public model: Users = null;
+  public model: UsersModel = null;
   public isLoading: boolean = true;
 
   constructor(
@@ -19,7 +21,7 @@ export class UsersComponent implements OnInit {
 
   ngOnInit() {
     this.appService.getUsers()
-      .subscribe(res => {
+      .subscribe((res: UserModel[]) => {
         this.isLoading = false;
         this.model = this.appService.createUsersInstance(res);
       });
@@ -35,11 +37,11 @@ export class UsersComponent implements OnInit {
       this.appService.getUser(id),
       this.appService.getUserTodos(id)
     )
-      .subscribe((res: any[]) => {
-        this.model.setCurrent({
+      .subscribe((res: [UserModel, any]) => {
+        this.model.setCurrent(new UserInfoModel({
           user: res[0],
-         todos: res[1]
-        });
+          todos: res[1]
+        }));
       });
   }
 

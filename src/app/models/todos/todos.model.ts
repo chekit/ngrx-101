@@ -1,14 +1,10 @@
+import { Todo } from "./todo.model";
+
 interface ICurrent {
 	id: number;
 	user: any;
 }
 
-export interface ITodo {
-	completed: boolean;
-	id: number;
-	title: number;
-	userId: number;
-}
 
 /**
  * Модель страницы списка заданий
@@ -20,7 +16,7 @@ export class Todos {
 	private current: any = null;
 	private filterTag: string = '';
 
-	constructor(private list: ITodo[]) {
+	constructor(private list: Todo[]) {
 
 	}
 
@@ -36,9 +32,9 @@ export class Todos {
 	/**
 	 * Список отфильтрованных заданий
 	 * 
-	 * @returns {ITodo[]} 
+	 * @returns {Todo[]} 
 	 */
-	public getTodos(): ITodo[] {
+	public getTodos(): Todo[] {
 		return this.filterTodoList(this.filterTag, this.list);
 	}
 
@@ -93,10 +89,10 @@ export class Todos {
 	 * 
 	 * @private
 	 * @param {string} tagName 
-	 * @param {ITodo[]} list 
-	 * @returns {ITodo[]} 
+	 * @param {Todo[]} list 
+	 * @returns {Todo[]} 
 	 */
-	private filterTodoList(tagName: string, list: ITodo[]): ITodo[] {
+	private filterTodoList(tagName: string, list: Todo[]): Todo[] {
 		return !!tagName ? list.filter(t => `User ${t.userId}` === tagName) : list;
 	}
 }

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../../app.service';
-import { Todos } from '../../models/todos.model';
+import { Todos } from '../../models/todos/todos.model';
 import { ICurrentTodo } from '../../components/todos-list/todos-item/todos-item.component';
+import { ITodo, Todo } from '../../models/todos/todo.model';
+import { UserModel } from '../../models/users/user.model';
 
 @Component({
   selector: 'app-user-todos',
@@ -18,7 +20,7 @@ export class TodosComponent implements OnInit {
 
   ngOnInit() {
     this.appService.getTodos()
-      .subscribe(res => {
+      .subscribe((res: Todo[]) => {
         this.isLoading = false;
         this.model = this.appService.createTodosInstance(res);
       });
@@ -31,7 +33,7 @@ export class TodosComponent implements OnInit {
    */
   public onTodoSelect(info: ICurrentTodo): void {
     this.appService.getUser(info.user)
-      .subscribe((user: any) => this.model.setCurrent({ user, id: info.todo }));
+      .subscribe((user: UserModel) => this.model.setCurrent({ user, id: info.todo }));
   }
 
   /**
