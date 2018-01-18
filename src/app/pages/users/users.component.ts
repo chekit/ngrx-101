@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersModel } from '../../models/users/users.model';
-import { AppService } from '../../app.service';
+import { Store } from '@ngrx/store';
 import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
 import { forkJoin } from 'rxjs/observable/forkJoin';
-import { IUser, UserModel } from '../../models/users/user.model';
+import { AppService } from '../../app.service';
 import { UserInfoModel } from '../../models/users/user-info.model';
+import { IUser, UserModel } from '../../models/users/user.model';
+import { UsersModel } from '../../models/users/users.model';
+import { UsersListState } from '../../store/index';
+import { selectUsers, UsersPageState } from '../../store/reducers/users/users.reducer';
+import { UsersListActions, LoadUsers } from '../../store/actions/users/users.action';
 
 @Component({
   selector: 'app-users',
@@ -13,18 +18,22 @@ import { UserInfoModel } from '../../models/users/user-info.model';
 })
 export class UsersComponent implements OnInit {
   public model: UsersModel = null;
+  public users$: Observable<UserModel[]>;
   public isLoading: boolean = true;
 
   constructor(
-    private appService: AppService
+    private appService: AppService,
+    private store: Store<UsersPageState>
   ) { }
 
   ngOnInit() {
-    this.appService.getUsers()
-      .subscribe((res: UserModel[]) => {
-        this.isLoading = false;
-        this.model = this.appService.createUsersInstance(res);
-      });
+    this.users$ = this.store.select('users');
+
+    // this.appService.getUsers()
+    //   .subscribe((res: UserModel[]) => {
+    //     this.isLoading = false;
+    //     this.model = this.appService.createUsersInstance(res);
+    //   });
   }
 
   /**

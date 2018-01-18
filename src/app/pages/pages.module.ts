@@ -1,11 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { StoreModule } from '@ngrx/store';
+import { AppService } from '../app.service';
 import { ComponentsModule } from '../components/components.module';
+import { reducers } from '../store/index';
+import { RoutesNames } from './routes.enum';
 import { TodosComponent } from './todos/todos.component';
 import { UsersComponent } from './users/users.component';
-import { RoutesNames } from './routes.enum';
-import { AppService } from '../app.service';
 
 const routes: Routes = [
   {
@@ -30,7 +32,8 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes),
     CommonModule,
-    ComponentsModule
+    ComponentsModule,
+    StoreModule.forRoot(reducers)
   ],
   declarations: [
     TodosComponent, 
