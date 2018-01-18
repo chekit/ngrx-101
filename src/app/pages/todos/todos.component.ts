@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../../app.service';
-import { Todos } from '../../models/todos/todos.model';
+import { TodosModel } from '../../models/todos/todos.model';
 import { ICurrentTodo } from '../../components/todos-list/todos-item/todos-item.component';
-import { ITodo, Todo } from '../../models/todos/todo.model';
+import { ITodo, TodoModel } from '../../models/todos/todo.model';
 import { UserModel } from '../../models/users/user.model';
 
 @Component({
@@ -11,7 +11,7 @@ import { UserModel } from '../../models/users/user.model';
   styleUrls: ['./todos.component.scss']
 })
 export class TodosComponent implements OnInit {
-  public model: Todos = null;
+  public model: TodosModel = null;
   public isLoading: boolean = true;
 
   constructor(
@@ -20,7 +20,7 @@ export class TodosComponent implements OnInit {
 
   ngOnInit() {
     this.appService.getTodos()
-      .subscribe((res: Todo[]) => {
+      .subscribe((res: TodoModel[]) => {
         this.isLoading = false;
         this.model = this.appService.createTodosInstance(res);
       });

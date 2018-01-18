@@ -5,7 +5,7 @@ export interface ITodo {
 	userId: number;
 }
 
-export class Todo {
+export class TodoModel {
 	readonly completed: boolean = null;
 	readonly id: number = null;
 	readonly title: number = null;

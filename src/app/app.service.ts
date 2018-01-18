@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UsersModel } from './models/users/users.model';
-import { Todos } from './models/todos/todos.model';
+import { TodosModel } from './models/todos/todos.model';
 import { Observable } from 'rxjs/Observable';
-import { ITodo, Todo } from './models/todos/todo.model';
+import { ITodo, TodoModel } from './models/todos/todo.model';
 import { IUser, UserModel } from './models/users/user.model';
 
 @Injectable()
@@ -30,7 +30,7 @@ export class AppService {
    * @returns 
    */
   public createTodosInstance(todosList: any[]) {
-    return new Todos(todosList);
+    return new TodosModel(todosList);
   }
 
   /**
@@ -60,9 +60,9 @@ export class AppService {
    * @param {number} id 
    * @returns {Observable<any>} 
    */
-  public getUserTodos(id: number): Observable<Todo[]> {
+  public getUserTodos(id: number): Observable<TodoModel[]> {
     return this.http.get(`https://jsonplaceholder.typicode.com/todos?userId=${id}`)
-      .map((res: ITodo[]) => res.map(i => (new Todo(i))));
+      .map((res: ITodo[]) => res.map(i => (new TodoModel(i))));
   }
 
   /**
@@ -70,8 +70,8 @@ export class AppService {
    * 
    * @returns {Observable<any>} 
    */
-  public getTodos(): Observable<Todo[]> {
+  public getTodos(): Observable<TodoModel[]> {
     return this.http.get('https://jsonplaceholder.typicode.com/todos/')
-      .map((res: ITodo[]) => res.map(i => (new Todo(i))));
+      .map((res: ITodo[]) => res.map(i => (new TodoModel(i))));
   }
 }
