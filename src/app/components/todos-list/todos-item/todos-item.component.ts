@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { Todo } from '../../../models/todos/todo.model';
+import { TodoModel } from '../../../models/todos/todo.model';
 
 export interface ICurrentTodo {
   user: number;
@@ -12,7 +12,7 @@ export interface ICurrentTodo {
   styleUrls: ['./todos-item.component.scss']
 })
 export class TodosItemComponent implements OnInit {
-  @Input() model: Todo;
+  @Input() model: TodoModel;
   @Input() isCurrent: boolean;
 
   @Output() todoSelected: EventEmitter<ICurrentTodo> = new EventEmitter();

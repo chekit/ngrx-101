@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ICurrentTodo } from './todos-item/todos-item.component';
-import { Todos } from '../../models/todos/todos.model';
+import { TodosModel } from '../../models/todos/todos.model';
 
 @Component({
   selector: 'app-user-todos-list',
@@ -8,7 +8,7 @@ import { Todos } from '../../models/todos/todos.model';
   styleUrls: ['./todos-list.component.scss']
 })
 export class TodosListComponent implements OnInit {
-  @Input() model: Todos;
+  @Input() model: TodosModel;
   @Output() selectTodo: EventEmitter<any> = new EventEmitter();
 
   constructor() { }

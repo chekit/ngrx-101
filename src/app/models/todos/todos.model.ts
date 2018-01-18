@@ -1,10 +1,10 @@
-import { Todo } from "./todo.model";
+import { UserModel } from '../users/user.model';
+import { TodoModel } from './todo.model';
 
-interface ICurrent {
+interface ICurrentTodo {
 	id: number;
-	user: any;
+	user: UserModel;
 }
-
 
 /**
  * Модель страницы списка заданий
@@ -12,11 +12,11 @@ interface ICurrent {
  * @export
  * @class Todos
  */
-export class Todos {
-	private current: any = null;
+export class TodosModel {
+	private current: ICurrentTodo = null;
 	private filterTag: string = '';
 
-	constructor(private list: Todo[]) {
+	constructor(private list: TodoModel[]) {
 
 	}
 
@@ -32,19 +32,19 @@ export class Todos {
 	/**
 	 * Список отфильтрованных заданий
 	 * 
-	 * @returns {Todo[]} 
+	 * @returns {TodoModel[]} 
 	 */
-	public getTodos(): Todo[] {
+	public getTodos(): TodoModel[] {
 		return this.filterTodoList(this.filterTag, this.list);
 	}
 
 	/**
 	 * Устанавливаем активное (просматриваемое) задание
 	 * 
-	 * @param {ICurrent} info 
-	 * @returns {Todos} 
+	 * @param {ICurrentTodo} info 
+	 * @returns {TodosModel} 
 	 */
-	public setCurrent(info: ICurrent): Todos {
+	public setCurrent(info: ICurrentTodo): TodosModel {
 		this.current = info;
 
 		return this;
@@ -53,9 +53,9 @@ export class Todos {
 	/**
 	 * Вовзращает активное задание
 	 * 
-	 * @returns {ICurrent} 
+	 * @returns {ICurrentTodo} 
 	 */
-	public getCurrent(): ICurrent {
+	public getCurrent(): ICurrentTodo {
 		return this.current;
 	}
 
@@ -89,10 +89,10 @@ export class Todos {
 	 * 
 	 * @private
 	 * @param {string} tagName 
-	 * @param {Todo[]} list 
-	 * @returns {Todo[]} 
+	 * @param {TodoModel[]} list 
+	 * @returns {TodoModel[]} 
 	 */
-	private filterTodoList(tagName: string, list: Todo[]): Todo[] {
+	private filterTodoList(tagName: string, list: TodoModel[]): TodoModel[] {
 		return !!tagName ? list.filter(t => `User ${t.userId}` === tagName) : list;
 	}
 }
