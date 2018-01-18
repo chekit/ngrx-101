@@ -74,4 +74,4 @@ export class FiltertUsers implements Action {
 	constructor(public payload: string) {}
 }
 
-export type UsersActions = LoadUsers | LoadUsersError | LoadUsersSuccess | SelectUser;
+export type UsersActions = LoadUsers | LoadUsersError | LoadUsersSuccess | SelectUser | FiltertUsers;
