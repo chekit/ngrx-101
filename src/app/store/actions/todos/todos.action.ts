@@ -1,25 +1,55 @@
 import { Action } from '@ngrx/store';
+import { TodoModel } from '../../../models/todos/todo.model';
 
-export enum UsersListActions {
-	LOAD_TODOS = '[Todos] Load users list',
-	LOAD_TODOS_ERROR = '[Todos] Load users list failed',
-	LOAD_TODOS_SUCCESS = '[Todos] Load users list succeded'
+export enum TodosListActions {
+	LOAD_TODOS = '[Todos] Load todos list',
+	LOAD_TODOS_ERROR = '[Todos] Load todos list failed',
+	LOAD_TODOS_SUCCESS = '[Todos] Load todos list succeded',
+
+	SELECT_TODO = '[Todos] Select todo from list'
 };
 
+/**
+ * Действие - Загрузка всех задач
+ * 
+ * @export
+ * @class LoadTodos
+ * @implements {Action}
+ */
 export class LoadTodos implements Action {
-	readonly type: string = UsersListActions.LOAD_TODOS;
+	readonly type: string = TodosListActions.LOAD_TODOS;
 }
 
+/**
+ * Действие - Загрузка всех задач не удалась
+ * 
+ * @export
+ * @class LoadTodosError
+ * @implements {Action}
+ */
 export class LoadTodosError implements Action {
-	readonly type: string = UsersListActions.LOAD_TODOS_ERROR;
+	readonly type: string = TodosListActions.LOAD_TODOS_ERROR;
 
 	constructor(public payload: any) {}
 }
 
+/**
+ * Действие - Загрузка всех задач удалась
+ * 
+ * @export
+ * @class LoadTodosSuccess
+ * @implements {Action}
+ */
 export class LoadTodosSuccess implements Action {
-	readonly type: string = UsersListActions.LOAD_TODOS_SUCCESS;
+	readonly type: string = TodosListActions.LOAD_TODOS_SUCCESS;
 
 	constructor(public payload: any) {}
 }
 
-export type TodosActions = LoadTodos | LoadTodosError | LoadTodosSuccess;
+export class SelectTodo implements Action {
+	readonly type: string = TodosListActions.SELECT_TODO;
+
+	constructor(public payload: TodoModel) {}
+}
+
+export type TodosActions = LoadTodos | LoadTodosError | LoadTodosSuccess | SelectTodo;
