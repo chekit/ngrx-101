@@ -7,8 +7,7 @@ export enum UsersListActions {
 	LOAD_USERS_SUCCESS = '[Users] Load users list succeded',
 	LOAD_USERS_ERROR = '[Users] Load users list failed',
 
-	SELECT_USER = '[Users] Select user from list',
-	FILTER_USERS = '[Users] Filter users list'
+	SELECT_USER = '[Users] Select user from list'
 }
 
 /**
