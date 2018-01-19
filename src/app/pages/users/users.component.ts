@@ -7,8 +7,8 @@ import { AppService } from '../../app.service';
 import { UserInfoModel } from '../../models/users/user-info.model';
 import { IUser, UserModel } from '../../models/users/user.model';
 import { UsersModel } from '../../models/users/users.model';
-import { UsersListState, getAllUsers } from '../../store/index';
-import { selectUsers, UsersPageState } from '../../store/reducers/users/users.reducer';
+import { UsersPageState, getAllUsers } from '../../store/index';
+import { selectUsers, UsersListState } from '../../store/reducers/users/users.reducer';
 import { UsersListActions, LoadUsers, LoadUsersSuccess } from '../../store/actions/users/users.action';
 import { LoadUserSuccess } from '../../store/actions/users/user.actions';
 
@@ -20,21 +20,16 @@ import { LoadUserSuccess } from '../../store/actions/users/user.actions';
 export class UsersComponent implements OnInit {
   public model: UsersModel = null;
   public users$: Observable<UserModel[]>;
+  public current$: Observable<UserInfoModel>;
   public isLoading: boolean = true;
 
   constructor(
-    private appService: AppService,
     private store: Store<UsersPageState>
   ) { }
 
   ngOnInit() {
-    this.users$ = this.store.select(getAllUsers);
-
-    // this.appService.getUsers()
-    //   .subscribe((res: UserModel[]) => {
-    //     this.isLoading = false;
-    //     this.model = this.appService.createUsersInstance(res);
-    //   });
+    this.store.select('users')
+      .subscribe(state => console.log(state));
   }
 
   /**
@@ -43,16 +38,16 @@ export class UsersComponent implements OnInit {
    * @param {number} id 
    */
   public onUserSelect(id: number): void {
-    forkJoin(
-      this.appService.getUser(id),
-      this.appService.getUserTodos(id)
-    )
-      .subscribe((res: [UserModel, any]) => {
-        this.model.setCurrent(new UserInfoModel({
-          user: res[0],
-          todos: res[1]
-        }));
-      });
+    // forkJoin(
+    //   this.appService.getUser(id),
+    //   this.appService.getUserTodos(id)
+    // )
+    //   .subscribe((res: [UserModel, any]) => {
+    //     this.model.setCurrent(new UserInfoModel({
+    //       user: res[0],
+    //       todos: res[1]
+    //     }));
+    //   });
   }
 
   /**

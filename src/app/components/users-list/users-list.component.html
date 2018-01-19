@@ -5,4 +5,4 @@
     <app-user [model]="user" [isCurrent]="user.id === model?.getCurrent()?.user.id" (userSelected)="onUserSelected($event)"></app-user>
   </li>
 </ul>
-<p class="users-list-empty" *ngIf=" model?.getUsers().length === 0">No Users to Show</p>  
+<p class="users-list-empty" *ngIf="model?.getUsers().length === 0 || !model">No Users to Show</p>  

@@ -59,17 +59,4 @@ export class SelectUser implements Action {
 	constructor(public payload: UserModel) {}
 }
 
-/**
- * Действие - Фильтрация пользователей
- * 
- * @export
- * @class SelectUser
- * @implements {Action}
- */
-export class FiltertUsers implements Action {
-	readonly type: string = UsersListActions.FILTER_USERS;
-
-	constructor(public payload: string) {}
-}
-
-export type UsersActions = LoadUsers | LoadUsersError | LoadUsersSuccess | SelectUser | FiltertUsers;
+export type UsersActions = LoadUsers | LoadUsersError | LoadUsersSuccess | SelectUser;

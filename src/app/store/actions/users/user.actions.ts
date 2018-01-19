@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import { UserModel } from '../../../models/users/user.model';
 
-export enum UserActions {
+export enum UserActionsTypes {
 	LOAD_USER = '[User] Load user info',
 	LOAD_USER_SUCCESS = '[User] Load user info succeded',
 	LOAD_USER_ERROR = '[User] Load user info failed',
@@ -15,7 +15,7 @@ export enum UserActions {
  * @implements {Action}
  */
 export class LoadUser implements Action {
-	readonly type: string = UserActions.LOAD_USER;
+	readonly type: string = UserActionsTypes.LOAD_USER;
 }
 
 /**
@@ -26,7 +26,7 @@ export class LoadUser implements Action {
  * @implements {Action}
  */
 export class LoadUserSuccess implements Action {
-	readonly type: string = UserActions.LOAD_USER_SUCCESS;
+	readonly type: string = UserActionsTypes.LOAD_USER_SUCCESS;
 
 	constructor(public payload: UserModel) {}
 }
@@ -39,9 +39,9 @@ export class LoadUserSuccess implements Action {
  * @implements {Action}
  */
 export class LoadUserError implements Action {
-	readonly type: string = UserActions.LOAD_USER_ERROR;
+	readonly type: string = UserActionsTypes.LOAD_USER_ERROR;
 
 	constructor(public payload: any) {}
 }
 
-export type UsersActions = LoadUser | LoadUserError | LoadUserSuccess;
+export type UserActions = LoadUser | LoadUserError | LoadUserSuccess;

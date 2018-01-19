@@ -21,7 +21,8 @@ export class UserInfoComponent implements OnInit {
    * @returns {boolean} 
    */
   public hasPersonal(): boolean {
-    return !!this.model.user.name && 
+    return !!this.model && 
+    !!this.model.user.name && 
     !!this.model.user.email && 
     !!this.model.user.phone && 
     !!this.model.user.username && 

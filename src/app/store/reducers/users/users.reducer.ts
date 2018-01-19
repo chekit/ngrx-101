@@ -3,7 +3,7 @@ import { UsersActions, UsersListActions } from '../../actions/users/users.action
 import { UsersModel } from '../../../models/users/users.model';
 import { UserInfoModel } from '../../../models/users/user-info.model';
 
-export interface UsersPageState {
+export interface UsersListState {
 	data: UserModel[];
 	// current: UserInfoModel;
 	// query: string;
@@ -11,7 +11,7 @@ export interface UsersPageState {
 	loaded: boolean;
 }
 
-export const initialUsersState: UsersPageState = {
+export const initialUsersState: UsersListState = {
 	data: [
 		(new UserModel({
 			'id': 1,
@@ -44,7 +44,7 @@ export const initialUsersState: UsersPageState = {
 };
 
 export function usersReducer(
-	state: UsersPageState = initialUsersState,
+	state: UsersListState = initialUsersState,
 	action: UsersActions
 ) {
 	switch (action.type) {
@@ -78,8 +78,8 @@ export function usersReducer(
 	}
 }
 
-export const selectUsers = (state: UsersPageState) => state.data;
-export const selectUsersLoading = (state: UsersPageState) => state.loading;
-export const selectUsersLoaded = (state: UsersPageState) => state.loaded;
+export const selectUsers = (state: UsersListState) => state.data;
+export const selectUsersLoading = (state: UsersListState) => state.loading;
+export const selectUsersLoaded = (state: UsersListState) => state.loaded;
 // export const selectCurrent = (state: UsersPageState) => state.current;
 // export const selectQuery = (state: UsersPageState) => state.query;
