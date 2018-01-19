@@ -4,6 +4,7 @@ import { TodosModel } from '../../models/todos/todos.model';
 import { ICurrentTodo } from '../../components/todos-list/todos-item/todos-item.component';
 import { ITodo, TodoModel } from '../../models/todos/todo.model';
 import { UserModel } from '../../models/users/user.model';
+import { TodoInfoModel } from '../../models/todos/todo-info.model';
 
 @Component({
   selector: 'app-user-todos',
@@ -33,7 +34,7 @@ export class TodosComponent implements OnInit {
    */
   public onTodoSelect(info: ICurrentTodo): void {
     this.appService.getUser(info.user)
-      .subscribe((user: UserModel) => this.model.setCurrent({ user, id: info.todo }));
+      .subscribe((user: UserModel) => this.model.setCurrent(new TodoInfoModel({ user, id: info.todo })));
   }
 
   /**
