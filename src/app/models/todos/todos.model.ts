@@ -1,10 +1,8 @@
 import { UserModel } from '../users/user.model';
 import { TodoModel } from './todo.model';
+import { TodoInfoModel } from './todo-info.model';
 
-interface ICurrentTodo {
-	id: number;
-	user: UserModel;
-}
+
 
 /**
  * Модель страницы списка заданий
@@ -13,7 +11,7 @@ interface ICurrentTodo {
  * @class Todos
  */
 export class TodosModel {
-	private current: ICurrentTodo = null;
+	private current: TodoInfoModel = null;
 	private filterTag: string = '';
 
 	constructor(private list: TodoModel[]) {
@@ -41,10 +39,10 @@ export class TodosModel {
 	/**
 	 * Устанавливаем активное (просматриваемое) задание
 	 * 
-	 * @param {ICurrentTodo} info 
+	 * @param {UserInfoModel} info 
 	 * @returns {TodosModel} 
 	 */
-	public setCurrent(info: ICurrentTodo): TodosModel {
+	public setCurrent(info: TodoInfoModel): TodosModel {
 		this.current = info;
 
 		return this;
@@ -53,9 +51,9 @@ export class TodosModel {
 	/**
 	 * Вовзращает активное задание
 	 * 
-	 * @returns {ICurrentTodo} 
+	 * @returns {UserInfoModel} 
 	 */
-	public getCurrent(): ICurrentTodo {
+	public getCurrent(): TodoInfoModel {
 		return this.current;
 	}
 
