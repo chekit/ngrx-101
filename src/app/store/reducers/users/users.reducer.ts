@@ -4,15 +4,15 @@ import { UsersModel } from '../../../models/users/users.model';
 import { UserInfoModel } from '../../../models/users/user-info.model';
 
 export interface UsersPageState {
-	users: UserModel[];
-	current: UserInfoModel;
-	query: string;
+	data: UserModel[];
+	// current: UserInfoModel;
+	// query: string;
 	loading: boolean;
 	loaded: boolean;
 }
 
 export const initialUsersState: UsersPageState = {
-	users: [
+	data: [
 		(new UserModel({
 			'id': 1,
 			'name': 'Leanne Graham',
@@ -37,8 +37,8 @@ export const initialUsersState: UsersPageState = {
 			}
 		}))
 	],
-	current: null,
-	query: '',
+	// current: null,
+	// query: '',
 	loading: false,
 	loaded: false
 };
@@ -78,8 +78,8 @@ export function usersReducer(
 	}
 }
 
-export const selectUsers = (state: UsersPageState) => state.users;
+export const selectUsers = (state: UsersPageState) => state.data;
 export const selectUsersLoading = (state: UsersPageState) => state.loading;
 export const selectUsersLoaded = (state: UsersPageState) => state.loaded;
-export const selectCurrent = (state: UsersPageState) => state.current;
-export const selectQuery = (state: UsersPageState) => state.query;
+// export const selectCurrent = (state: UsersPageState) => state.current;
+// export const selectQuery = (state: UsersPageState) => state.query;

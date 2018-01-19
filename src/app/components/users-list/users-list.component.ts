@@ -15,7 +15,6 @@ export class UsersListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    debugger;
   }
 
   public trackById(index: number, user: any): number {

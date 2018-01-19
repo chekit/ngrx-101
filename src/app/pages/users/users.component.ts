@@ -7,9 +7,10 @@ import { AppService } from '../../app.service';
 import { UserInfoModel } from '../../models/users/user-info.model';
 import { IUser, UserModel } from '../../models/users/user.model';
 import { UsersModel } from '../../models/users/users.model';
-import { UsersListState } from '../../store/index';
+import { UsersListState, getAllUsers } from '../../store/index';
 import { selectUsers, UsersPageState } from '../../store/reducers/users/users.reducer';
-import { UsersListActions, LoadUsers } from '../../store/actions/users/users.action';
+import { UsersListActions, LoadUsers, LoadUsersSuccess } from '../../store/actions/users/users.action';
+import { LoadUserSuccess } from '../../store/actions/users/user.actions';
 
 @Component({
   selector: 'app-users',
@@ -27,7 +28,7 @@ export class UsersComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.users$ = this.store.select('users');
+    this.users$ = this.store.select(getAllUsers);
 
     // this.appService.getUsers()
     //   .subscribe((res: UserModel[]) => {
