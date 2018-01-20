@@ -33,10 +33,10 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     CommonModule,
     ComponentsModule,
-    StoreModule.forFeature('users', reducers)
+    StoreModule.forFeature('users_page', reducers)
   ],
   declarations: [
-    TodosComponent, 
+    TodosComponent,
     UsersComponent
   ],
   exports: [

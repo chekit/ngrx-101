@@ -5,8 +5,6 @@ import { UserInfoModel } from '../../../models/users/user-info.model';
 
 export interface UsersListState {
 	data: UserModel[];
-	// current: UserInfoModel;
-	// query: string;
 	loading: boolean;
 	loaded: boolean;
 }
@@ -37,15 +35,13 @@ export const initialUsersState: UsersListState = {
 			}
 		}))
 	],
-	// current: null,
-	// query: '',
 	loading: false,
 	loaded: false
 };
 
-export function usersReducer(
+export function usersListReducer(
 	state: UsersListState = initialUsersState,
-	action: UsersActions
+	action: any/* UsersActions */
 ) {
 	switch (action.type) {
 		case UsersListActions.LOAD_USERS:
@@ -69,7 +65,11 @@ export function usersReducer(
 		case UsersListActions.SELECT_USER:
 			return {
 				...state,
-				// current: action.payload,
+				data: state.data.map(u => {
+					u['isCurrent'] = u.id === action.payload.user.id ?  true : false;
+
+					return u;
+				}),
 				loading: false,
 				loaded: false
 			};
@@ -78,8 +78,6 @@ export function usersReducer(
 	}
 }
 
-export const selectUsers = (state: UsersListState) => state.data;
-export const selectUsersLoading = (state: UsersListState) => state.loading;
-export const selectUsersLoaded = (state: UsersListState) => state.loaded;
-// export const selectCurrent = (state: UsersPageState) => state.current;
-// export const selectQuery = (state: UsersPageState) => state.query;
+export const selectUsersList = (state: UsersListState) => state.data;
+export const selectUsersListLoading = (state: UsersListState) => state.loading;
+export const selectUsersListLoaded = (state: UsersListState) => state.loaded;

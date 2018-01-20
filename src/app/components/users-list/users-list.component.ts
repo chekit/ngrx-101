@@ -1,15 +1,16 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
 import { UsersModel } from '../../models/users/users.model';
 import { UserModel } from '../../models/users/user.model';
 
 @Component({
   selector: 'app-users-list',
   templateUrl: './users-list.component.html',
-  styleUrls: ['./users-list.component.scss']
+  styleUrls: ['./users-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UsersListComponent implements OnInit {
-  @Input() public model: UsersModel;
-  @Input() public model$: UserModel[];
+  @Input() public model: UserModel[];
+
   @Output() userSelect: EventEmitter<number> = new EventEmitter();
 
   constructor() { }

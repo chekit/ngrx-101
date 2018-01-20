@@ -16,7 +16,7 @@ import { StoreModule } from '@ngrx/store';
     HttpClientModule,
     PagesModule,
     ComponentsModule,
-    StoreModule.forRoot({}) // @TODO: Подклбчение с forFeature
+    StoreModule.forRoot({})
   ],
   providers: [],
   bootstrap: [

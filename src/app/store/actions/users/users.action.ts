@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
 import { UserModel } from '../../../models/users/user.model';
 import { UsersModel } from '../../../models/users/users.model';
+import { UserInfoModel } from '../../../models/users/user-info.model';
 
 export enum UsersListActions {
 	LOAD_USERS = '[Users] Load users list',
@@ -56,7 +57,7 @@ export class LoadUsersError implements Action {
 export class SelectUser implements Action {
 	readonly type: string = UsersListActions.SELECT_USER;
 
-	constructor(public payload: UserModel) {}
+	constructor(public payload: UserInfoModel) {}
 }
 
 export type UsersActions = LoadUsers | LoadUsersError | LoadUsersSuccess | SelectUser;

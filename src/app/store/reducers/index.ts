@@ -1,33 +1,39 @@
-import { UsersListState, usersReducer, selectUsers } from './users/users.reducer';
+import { UsersListState, usersListReducer, selectUsersList, selectUsersListLoaded, selectUsersListLoading } from './users/users.reducer';
 import { ActionReducerMap } from '@ngrx/store/src/models';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { userReducer, UserState, selectUserInfo } from './users/user.reducer';
 
-export interface UsersPageState {
+export interface IUsersPageState {
 	users: UsersListState;
 	current: UserState;
 }
 
-export const reducers: ActionReducerMap<UsersPageState> = {
-	users: usersReducer,
+// Объект преобразователей состояния
+export const reducers: ActionReducerMap<IUsersPageState> = {
+	users: usersListReducer,
 	current: userReducer
 };
 
-// @TODO: работает с forFeature
-export const getUsersListState = createFeatureSelector<UsersPageState>(
-	'users'
+// Получаем доступ к корню дерева состояний feature модуля
+export const getUsersPageState = createFeatureSelector<IUsersPageState>(
+	'users_page'
 );
 
-export const getUsersState = createSelector(
-	getUsersListState,
-	(state: UsersPageState) => {
-		console.log(state)
-		
-		return state.users;
-	}
+// Получаем состояние списка пользователей
+export const getUsersListState = createSelector(
+	getUsersPageState,
+	(state: IUsersPageState) => state.users
 );
 
-export const getAllUsers = createSelector(getUsersState, selectUsers);
+// Получаем части состояния списка пользователей
+// Получаем значение свойства data
+export const getAllUsers = createSelector(getUsersListState, selectUsersList);
+// Получаем части состояния списка пользователей
+// Получаем значение свойства loading
+export const getUsersLoading = createSelector(getUsersListState, selectUsersListLoading);
+// Получаем части состояния списка пользователей
+// Получаем значение свойства loaded
+export const getUsersLoaded = createSelector(getUsersListState, selectUsersListLoaded);
 
 // @TODO: работает с forFeature
 // export const getCurrentState = createFeatureSelector<UsersPageState>(

@@ -6,7 +6,7 @@
     <!-- <div *ngIf="!isLoading"> -->
     <div>
       <app-filter [style]="'search'" (filterList)="onFilterUsersList($event)"></app-filter>
-      <app-users-list [model$]="users$" (userSelect)="onUserSelect($event)"></app-users-list>
+      <app-users-list [model]="users$ | async" (userSelect)="onUserSelect($event)"></app-users-list>
     </div>
   </section>
   <section class="content__item content__item--no-padding-tb" [class.is-empty]="!model?.hasCurrent()">
