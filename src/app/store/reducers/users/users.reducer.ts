@@ -10,31 +10,7 @@ export interface UsersListState {
 }
 
 export const initialUsersState: UsersListState = {
-	data: [
-		(new UserModel({
-			'id': 1,
-			'name': 'Leanne Graham',
-			'username': 'Bret',
-			'email': 'Sincere@april.biz',
-			'address': {
-			  'street': 'Kulas Light',
-			  'suite': 'Apt. 556',
-			  'city': 'Gwenborough',
-			  'zipcode': '92998-3874',
-			  'geo': {
-				'lat': '-37.3159',
-				'lng': '81.1496'
-			  }
-			},
-			'phone': '1-770-736-8031 x56442',
-			'website': 'hildegard.org',
-			'company': {
-			  'name': 'Romaguera-Crona',
-			  'catchPhrase': 'Multi-layered client-server neural-net',
-			  'bs': 'harness real-time e-markets'
-			}
-		}))
-	],
+	data: [],
 	loading: false,
 	loaded: false
 };
@@ -52,7 +28,7 @@ export function usersListReducer(
 		case UsersListActions.LOAD_USERS_SUCCESS:
 			return {
 				...state,
-				// users: action.payload,
+				data: action.payload,
 				loading: false,
 				loaded: true
 			};
@@ -66,7 +42,7 @@ export function usersListReducer(
 			return {
 				...state,
 				data: state.data.map(u => {
-					u['isCurrent'] = u.id === action.payload.user.id ?  true : false;
+					u['isCurrent'] = u.id === action.payload.user.id ? true : false;
 
 					return u;
 				}),

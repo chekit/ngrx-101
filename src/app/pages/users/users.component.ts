@@ -10,7 +10,7 @@ import { UsersModel } from '../../models/users/users.model';
 import { IUsersPageState, getAllUsers } from '../../store/index';
 import { selectUsersList, UsersListState } from '../../store/reducers/users/users.reducer';
 import { UsersListActions, LoadUsers, LoadUsersSuccess, SelectUser } from '../../store/actions/users/users.action';
-import { LoadUserSuccess } from '../../store/actions/users/user.actions';
+import { LoadUserSuccess, UserActionsTypes } from '../../store/actions/users/user.actions';
 
 @Component({
   selector: 'app-users',
@@ -32,6 +32,8 @@ export class UsersComponent implements OnInit {
 
   ngOnInit() {
     this.users$ = this.store.select<any>(getAllUsers);
+
+    this.store.dispatch(new LoadUsers());
   }
 
   /**
