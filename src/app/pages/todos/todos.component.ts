@@ -5,6 +5,13 @@ import { ICurrentTodo } from '../../components/todos-list/todos-item/todos-item.
 import { ITodo, TodoModel } from '../../models/todos/todo.model';
 import { UserModel } from '../../models/users/user.model';
 import { TodoInfoModel } from '../../models/todos/todo-info.model';
+import { Observable } from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
+import { ITodosPageState } from '../../store/reducers/todos/index';
+import { getAllTodos, getTodosListLoading, getTodosListLoaded, getCurrentUser } from '../../store/index';
+import { LoadTodos, SelectTodo } from '../../store/actions/todos/todos.action';
+import { LoadUser, LoadTodoUser } from '../../store/actions/users/user.actions';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-todos',
@@ -12,19 +19,25 @@ import { TodoInfoModel } from '../../models/todos/todo-info.model';
   styleUrls: ['./todos.component.scss']
 })
 export class TodosComponent implements OnInit {
-  public model: TodosModel = null;
-  public isLoading: boolean = true;
+  public model: any = null;
+
+  public todos$: Observable<TodoModel[]>;
+  public loading$: Observable<boolean>;
+  public loaded$: Observable<boolean>;
+  public current$: any;
 
   constructor(
-    private appService: AppService
-  ) { }
+    private appService: AppService,
+    private store: Store<ITodosPageState>
+  ) {
+    this.todos$ = this.store.select<any>(getAllTodos);
+    this.current$ = this.store.select<any>(getCurrentUser);
+    this.loading$ = this.store.select<any>(getTodosListLoading);
+    this.loaded$ = this.store.select<any>(getTodosListLoaded);
+  }
 
   ngOnInit() {
-    this.appService.getTodos()
-      .subscribe((res: TodoModel[]) => {
-        this.isLoading = false;
-        this.model = this.appService.createTodosInstance(res);
-      });
+    this.store.dispatch(new LoadTodos());
   }
 
   /**
@@ -32,9 +45,9 @@ export class TodosComponent implements OnInit {
    * 
    * @param {ICurrentTodo} info 
    */
-  public onTodoSelect(info: ICurrentTodo): void {
-    this.appService.getUser(info.user)
-      .subscribe((user: UserModel) => this.model.setCurrent(new TodoInfoModel({ user, id: info.todo })));
+  public onTodoSelect(selected: ICurrentTodo): void {
+    this.store.dispatch(new SelectTodo(selected));
+    this.store.dispatch(new LoadTodoUser({ id: selected.userId }));
   }
 
   /**

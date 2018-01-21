@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { TodoModel } from '../../../models/todos/todo.model';
+import { ICurrentTodo } from '../../../components/todos-list/todos-item/todos-item.component';
 
 export enum TodosListActions {
 	LOAD_TODOS = '[Todos] Load todos list',
@@ -18,6 +19,8 @@ export enum TodosListActions {
  */
 export class LoadTodos implements Action {
 	readonly type: string = TodosListActions.LOAD_TODOS;
+
+	constructor(public payload: any = null) {}
 }
 
 /**
@@ -49,7 +52,7 @@ export class LoadTodosSuccess implements Action {
 export class SelectTodo implements Action {
 	readonly type: string = TodosListActions.SELECT_TODO;
 
-	constructor(public payload: TodoModel) {}
+	constructor(public payload: ICurrentTodo) {}
 }
 
 export type TodosActions = LoadTodos | LoadTodosError | LoadTodosSuccess | SelectTodo;

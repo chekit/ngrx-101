@@ -7,7 +7,7 @@ import { AppService } from '../../app.service';
 import { UserInfoModel } from '../../models/users/user-info.model';
 import { IUser, UserModel } from '../../models/users/user.model';
 import { UsersModel } from '../../models/users/users.model';
-import { IUsersPageState, getAllUsers, getCurrentUser } from '../../store/index';
+import { IAppState, getAllUsers, getCurrentUser, getUsersLoading, getUsersLoaded } from '../../store/index';
 import { selectUsersList, UsersListState } from '../../store/reducers/users/users.reducer';
 import { UsersListActions, LoadUsers, LoadUsersSuccess, SelectUser } from '../../store/actions/users/users.action';
 import { LoadUserSuccess, UserActionsTypes, LoadUser } from '../../store/actions/users/user.actions';
@@ -21,13 +21,18 @@ export class UsersComponent implements OnInit {
   public isLoading: boolean = true;
 
   public users$: Observable<UserModel[]>;
+  public loading$: Observable<boolean>;
+  public loaded$: Observable<boolean>;
   public current$: Observable<UserInfoModel>;
 
   constructor(
     private appService: AppService,
-    private store: Store<IUsersPageState>
+    private store: Store<IAppState>
   ) {
     this.users$ = this.store.select<any>(getAllUsers);
+    this.loading$ = this.store.select<any>(getUsersLoading);
+    this.loaded$ = this.store.select<any>(getUsersLoaded);
+
     this.current$ = this.store.select<any>(getCurrentUser);
   }
 

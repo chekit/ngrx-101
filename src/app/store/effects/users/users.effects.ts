@@ -5,8 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { AppService } from '../../../app.service';
 import { UserModel } from '../../../models/users/user.model';
-import { LoadUserError, UserActionsTypes } from '../../actions/users/user.actions';
-import { LoadUsersSuccess, UsersListActions } from '../../actions/users/users.action';
+import { LoadUsersSuccess, UsersListActions, LoadUsersError } from '../../actions/users/users.action';
 
 @Injectable()
 export class UserListEffects {
@@ -17,10 +16,10 @@ export class UserListEffects {
 				.getUsers()
 				.pipe(
 					map((users: UserModel[]) => (new LoadUsersSuccess(users))),
-					catchError(err => of(new LoadUserError(err)))
+					catchError(err => of(new LoadUsersError(err)))
 				)
 			)
-		)
+		);
 
 	constructor(
 		private actions$: Actions,

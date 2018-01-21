@@ -1,14 +1,14 @@
 export interface ITodo {
 	completed: boolean;
 	id: number;
-	title: number;
+	title: string;
 	userId: number;
 }
 
 export class TodoModel {
 	readonly completed: boolean = null;
 	readonly id: number = null;
-	readonly title: number = null;
+	readonly title: string = null;
 	readonly userId: number = null;
 
 	constructor(private data: ITodo) {

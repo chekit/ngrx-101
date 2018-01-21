@@ -42,12 +42,12 @@ export function usersListReducer(
 			return {
 				...state,
 				data: state.data.map(u => {
-					u['isCurrent'] = u.id === action.payload.id ? true : false;
+					u['isCurrent'] = u.id === action.payload.id;
 
 					return u;
 				}),
 				loading: false,
-				loaded: false
+				loaded: true
 			};
 		default:
 			return state;

@@ -4,6 +4,7 @@ import { UserInfoModel } from '../../../models/users/user-info.model';
 
 export enum UserActionsTypes {
 	LOAD_USER = '[User] Load user info',
+	LOAD_TODO_USER = '[User] Load user info for todos list',
 	LOAD_USER_SUCCESS = '[User] Load user info succeded',
 	LOAD_USER_ERROR = '[User] Load user info failed',
 };
@@ -19,6 +20,10 @@ export class LoadUser implements Action {
 	readonly type: string = UserActionsTypes.LOAD_USER;
 
 	constructor(public payload: { id: number}) {}
+}
+
+export class LoadTodoUser extends LoadUser {
+	readonly type: string = UserActionsTypes.LOAD_TODO_USER;
 }
 
 /**
@@ -47,4 +52,4 @@ export class LoadUserError implements Action {
 	constructor(public payload: any) {}
 }
 
-export type UserActions = LoadUser | LoadUserError | LoadUserSuccess;
+export type UserActions = LoadUser | LoadUserError | LoadUserSuccess | LoadTodoUser;

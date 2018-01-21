@@ -1,15 +1,15 @@
 <main class="content">
     <section class="content__item content__item--no-padding-tb">
-      <div class="content__item-loading" *ngIf="isLoading">
+      <div class="content__item-loading" *ngIf="loading$ | async">
         Loading...
       </div>
-      <div *ngIf="!isLoading">
-        <app-filter [style]="'tags'" [tagList]="model?.getTagList()" (filterList)="onFilterTodosList($event)"></app-filter>
-        <app-user-todos-list [model]="model" (selectTodo)="onTodoSelect($event)"></app-user-todos-list>
-      </div>
+      <ng-container *ngIf="loaded$ | async">
+        <app-filter [style]="'tags'" [tagList]="" (filterList)="onFilterTodosList($event)"></app-filter>
+        <app-user-todos-list [model]="todos$ | async" (selectTodo)="onTodoSelect($event)"></app-user-todos-list>
+      </ng-container>
     </section>
-    <section class="content__item content__item--no-padding-tb" [class.is-empty]="!model?.hasCurrent()">
-      <app-user-info *ngIf="model?.hasCurrent()" [model]="model?.getCurrent()"></app-user-info>
-      <p class="content__item-text" *ngIf="!model?.hasCurrent()">Select ToDo on the left</p>
+    <section class="content__item content__item--no-padding-tb" [class.is-empty]="!(current$ | async)">
+      <app-user-info *ngIf="current$ | async" [model]="current$ | async"></app-user-info>
+      <p class="content__item-text" *ngIf="!(current$ | async)">Select ToDo on the left</p>
     </section>
   </main>
