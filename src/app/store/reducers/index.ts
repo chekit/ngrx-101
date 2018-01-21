@@ -1,7 +1,7 @@
 import { UsersListState, usersListReducer, selectUsersList, selectUsersListLoaded, selectUsersListLoading } from './users/users.reducer';
 import { ActionReducerMap } from '@ngrx/store/src/models';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { userReducer, UserState, selectUserInfo } from './users/user.reducer';
+import { userReducer, UserState, selectUserInfo, selectUserLoading, selectUserLoaded } from './users/user.reducer';
 
 export interface IUsersPageState {
 	users: UsersListState;
@@ -25,7 +25,7 @@ export const getUsersListState = createSelector(
 	(state: IUsersPageState) => state.users
 );
 
-// Получаем части состояния списка пользователей
+/*** Получаем состояния списка пользователей ***/
 // Получаем значение свойства data
 export const getAllUsers = createSelector(getUsersListState, selectUsersList);
 // Получаем части состояния списка пользователей
@@ -35,18 +35,15 @@ export const getUsersLoading = createSelector(getUsersListState, selectUsersList
 // Получаем значение свойства loaded
 export const getUsersLoaded = createSelector(getUsersListState, selectUsersListLoaded);
 
-// @TODO: работает с forFeature
-// export const getCurrentState = createFeatureSelector<UsersPageState>(
-// 	'current'
-// );
+/*** Получаем состояние выбранного пользователя ***/
+export const getCurrentUserState = createSelector(
+	getUsersPageState,
+	(state: IUsersPageState) => state.current
+);
 
-// export const getUserState = createSelector(
-// 	getCurrentState,
-// 	(state: UsersPageState) => {
-// 		console.log(state)
-		
-// 		return state.current;
-// 	}
-// );
+export const getCurrentUser = createSelector(getCurrentUserState, selectUserInfo);
+export const getCurrentUserLoading = createSelector(getCurrentUserState, selectUserLoading);
+export const getCurrentUserLoaded = createSelector(getCurrentUserState, selectUserLoaded);
+
 
 // export const getCurrentUserInfo = createSelector(getUserState, selectUserInfo);

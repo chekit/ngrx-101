@@ -20,6 +20,7 @@ export enum UsersListActions {
  */
 export class LoadUsers implements Action {
 	readonly type: string = UsersListActions.LOAD_USERS;
+	constructor(public payload: any = null) {}
 }
 
 /**
@@ -57,7 +58,7 @@ export class LoadUsersError implements Action {
 export class SelectUser implements Action {
 	readonly type: string = UsersListActions.SELECT_USER;
 
-	constructor(public payload: UserInfoModel) {}
+	constructor(public payload: {id: number}) {}
 }
 
 export type UsersActions = LoadUsers | LoadUsersError | LoadUsersSuccess | SelectUser;

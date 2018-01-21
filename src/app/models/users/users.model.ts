@@ -1,8 +1,6 @@
 import { UserModel } from './user.model';
 import { UserInfoModel } from './user-info.model';
 
-
-
 /**
  * Модель страницы пользователей
  * 

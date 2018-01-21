@@ -10,6 +10,7 @@ import { RoutesNames } from './routes.enum';
 import { TodosComponent } from './todos/todos.component';
 import { UsersComponent } from './users/users.component';
 import { UserListEffects } from '../store/effects/users/users.effects';
+import { UserInfoEffect } from '../store/effects/users/user.effects';
 
 const routes: Routes = [
   {
@@ -36,7 +37,7 @@ const routes: Routes = [
     CommonModule,
     ComponentsModule,
     StoreModule.forFeature('users_page', reducers),
-    EffectsModule.forFeature([UserListEffects])
+    EffectsModule.forFeature([UserListEffects, UserInfoEffect])
   ],
   declarations: [
     TodosComponent,

@@ -9,8 +9,8 @@
       <app-users-list [model]="users$ | async" (userSelect)="onUserSelect($event)"></app-users-list>
     </div>
   </section>
-  <section class="content__item content__item--no-padding-tb" [class.is-empty]="!model?.hasCurrent()">
-    <app-user-info *ngIf="model?.hasCurrent()" [model]="model?.getCurrent()"></app-user-info>
-    <p class="content__item-text" *ngIf="!model?.hasCurrent()">Select a person on the left</p>
+  <section class="content__item content__item--no-padding-tb" [class.is-empty]="!(current$ | async)?.user">
+    <app-user-info *ngIf="(current$ | async)?.user" [model]="current$ | async"></app-user-info>
+    <p class="content__item-text" *ngIf="!(current$ | async)?.user">Select a person on the left</p>
   </section>
 </main>

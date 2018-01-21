@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { UserModel } from '../../../models/users/user.model';
+import { UserInfoModel } from '../../../models/users/user-info.model';
 
 export enum UserActionsTypes {
 	LOAD_USER = '[User] Load user info',
@@ -16,6 +17,8 @@ export enum UserActionsTypes {
  */
 export class LoadUser implements Action {
 	readonly type: string = UserActionsTypes.LOAD_USER;
+
+	constructor(public payload: { id: number}) {}
 }
 
 /**
@@ -28,7 +31,7 @@ export class LoadUser implements Action {
 export class LoadUserSuccess implements Action {
 	readonly type: string = UserActionsTypes.LOAD_USER_SUCCESS;
 
-	constructor(public payload: UserModel) {}
+	constructor(public payload: UserInfoModel) {}
 }
 
 /**

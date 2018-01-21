@@ -17,7 +17,7 @@ export const initialUsersState: UsersListState = {
 
 export function usersListReducer(
 	state: UsersListState = initialUsersState,
-	action: any/* UsersActions */
+	action: UsersActions
 ) {
 	switch (action.type) {
 		case UsersListActions.LOAD_USERS:
@@ -42,7 +42,7 @@ export function usersListReducer(
 			return {
 				...state,
 				data: state.data.map(u => {
-					u['isCurrent'] = u.id === action.payload.user.id ? true : false;
+					u['isCurrent'] = u.id === action.payload.id ? true : false;
 
 					return u;
 				}),

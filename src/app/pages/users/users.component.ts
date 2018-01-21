@@ -7,10 +7,10 @@ import { AppService } from '../../app.service';
 import { UserInfoModel } from '../../models/users/user-info.model';
 import { IUser, UserModel } from '../../models/users/user.model';
 import { UsersModel } from '../../models/users/users.model';
-import { IUsersPageState, getAllUsers } from '../../store/index';
+import { IUsersPageState, getAllUsers, getCurrentUser } from '../../store/index';
 import { selectUsersList, UsersListState } from '../../store/reducers/users/users.reducer';
 import { UsersListActions, LoadUsers, LoadUsersSuccess, SelectUser } from '../../store/actions/users/users.action';
-import { LoadUserSuccess, UserActionsTypes } from '../../store/actions/users/user.actions';
+import { LoadUserSuccess, UserActionsTypes, LoadUser } from '../../store/actions/users/user.actions';
 
 @Component({
   selector: 'app-users',
@@ -20,19 +20,18 @@ import { LoadUserSuccess, UserActionsTypes } from '../../store/actions/users/use
 export class UsersComponent implements OnInit {
   public isLoading: boolean = true;
 
-
-
   public users$: Observable<UserModel[]>;
   public current$: Observable<UserInfoModel>;
 
   constructor(
     private appService: AppService,
     private store: Store<IUsersPageState>
-  ) { }
+  ) {
+    this.users$ = this.store.select<any>(getAllUsers);
+    this.current$ = this.store.select<any>(getCurrentUser);
+  }
 
   ngOnInit() {
-    this.users$ = this.store.select<any>(getAllUsers);
-
     this.store.dispatch(new LoadUsers());
   }
 
@@ -42,20 +41,8 @@ export class UsersComponent implements OnInit {
    * @param {number} id 
    */
   public onUserSelect(id: number): void {
-    forkJoin(
-      this.appService.getUser(id),
-      this.appService.getUserTodos(id)
-    )
-      .subscribe((res: [UserModel, any]) => {
-        this.store.dispatch(new SelectUser(new UserInfoModel({
-          user: res[0],
-          todos: res[1]
-        })))
-        // this.model.find.setCurrent(new UserInfoModel({
-        //   user: res[0],
-        //   todos: res[1]
-        // }));
-      });
+    this.store.dispatch(new SelectUser({ id }));
+    this.store.dispatch(new LoadUser({ id }));
   }
 
   /**
