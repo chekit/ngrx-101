@@ -4,7 +4,7 @@
         Loading...
       </div>
       <div *ngIf="!isLoading">
-        <app-filter [style]="'tags'" [tagList]="model?.getTagList()" (filterList)="onFilterTodosList($event)"></app-filter>
+        <app-filter [mod]="'tags'" [tagList]="model?.getTagList()" (filterList)="onFilterTodosList($event)"></app-filter>
         <app-user-todos-list [model]="model" (selectTodo)="onTodoSelect($event)"></app-user-todos-list>
       </div>
     </section>
