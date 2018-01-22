@@ -17,7 +17,7 @@ export const inititalTodosState: ITodosState = {
 	loaded: false
 };
 
-export function todosReducer(
+export function todosListReducer(
 	state: ITodosState = inititalTodosState,
 	action: TodosActions
 ) {

@@ -26,9 +26,11 @@ export function userReducer(
 				loading: true
 			};
 		case UserActionsTypes.LOAD_USER_SUCCESS:
+			const data = action.payload;
+
 			return {
 				...state,
-				data: action.payload,
+				data,
 				loading: false,
 				loaded: true
 			};

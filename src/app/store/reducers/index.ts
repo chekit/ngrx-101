@@ -2,7 +2,7 @@ import { UsersListState, usersListReducer, selectUsersList, selectUsersListLoade
 import { ActionReducerMap } from '@ngrx/store/src/models';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { userReducer, UserState, selectUserInfo, selectUserLoading, selectUserLoaded } from './users/user.reducer';
-import { ITodosState, todosReducer, selectTodosList, selectTodosLoading, selectTodosLoaded, selectTodosListTags } from './todos/todos.reducer';
+import { ITodosState, todosListReducer, selectTodosList, selectTodosLoading, selectTodosLoaded, selectTodosListTags } from './todos/todos.reducer';
 
 export interface IAppState {
 	users: UsersListState;
@@ -14,7 +14,7 @@ export interface IAppState {
 export const reducers: ActionReducerMap<IAppState> = {
 	users: usersListReducer,
 	current: userReducer,
-	todos: todosReducer
+	todos: todosListReducer
 };
 
 // Получаем доступ к корню дерева состояний feature модуля

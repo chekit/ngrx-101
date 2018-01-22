@@ -28,9 +28,11 @@ export function usersListReducer(
 				loading: true
 			};
 		case UsersListActions.LOAD_USERS_SUCCESS:
+			const data = action.payload;
+
 			return {
 				...state,
-				data: action.payload,
+				data,
 				loading: false,
 				loaded: true
 			};

@@ -15,7 +15,7 @@ export class UserListEffects {
 			switchMap(() => this.appService
 				.getUsers()
 				.pipe(
-					map((users: UserModel[]) => (new LoadUsersSuccess(users))),
+					map((users: UserModel[]) => new LoadUsersSuccess(users)),
 					catchError(err => of(new LoadUsersError(err)))
 				)
 			)
