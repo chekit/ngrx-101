@@ -4,7 +4,7 @@
       Loading...
     </div>
     <div *ngIf="!isLoading">
-      <app-filter [style]="'search'" (filterList)="onFilterUsersList($event)"></app-filter>
+      <app-filter [mod]="'search'" (filterList)="onFilterUsersList($event)"></app-filter>
       <app-users-list [model]="model" (userSelect)="onUserSelect($event)"></app-users-list>
     </div>
   </section>
