@@ -3,10 +3,10 @@
     <div class="content__item-loading" *ngIf="loading$ | async">
       Loading...
     </div>
-    <ng-container *ngIf="loaded$ | async">
-      <app-filter [style]="'search'" (filterList)="onFilterUsersList($event)"></app-filter>
-      <app-users-list [model]="users$ | async" (userSelect)="onUserSelect($event)"></app-users-list>
-    </ng-container>
+    <div *ngIf="!isLoading">
+      <app-filter [mod]="'search'" (filterList)="onFilterUsersList($event)"></app-filter>
+      <app-users-list [model]="model" (userSelect)="onUserSelect($event)"></app-users-list>
+    </div>
   </section>
   <section class="content__item content__item--no-padding-tb" [class.is-empty]="!(current$ | async)?.user">
     <app-user-info *ngIf="(current$ | async)?.user" [model]="current$ | async"></app-user-info>

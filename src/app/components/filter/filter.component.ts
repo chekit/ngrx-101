@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-enum FilterStyles {
+enum FilterMods {
   SEARCH = 'search',
   TAGS = 'tags',
 }
@@ -13,12 +13,12 @@ enum FilterStyles {
 export class FilterComponent implements OnInit {
   @Input() public tagList: Set<string> = new Set();
   
-  @Input() public set style(value: string) {
+  @Input() public set mod(value: string) {
     switch (value) {
-      case FilterStyles.SEARCH:
+      case FilterMods.SEARCH:
         this.isSearch = true;
         break;
-      case FilterStyles.TAGS:
+      case FilterMods.TAGS:
         this.isTags = true;
         break;
     }

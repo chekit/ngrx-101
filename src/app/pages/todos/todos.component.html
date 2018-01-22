@@ -3,10 +3,10 @@
       <div class="content__item-loading" *ngIf="loading$ | async">
         Loading...
       </div>
-      <ng-container *ngIf="loaded$ | async">
-        <app-filter [style]="'tags'" [tagList]="" (filterList)="onFilterTodosList($event)"></app-filter>
-        <app-user-todos-list [model]="todos$ | async" (selectTodo)="onTodoSelect($event)"></app-user-todos-list>
-      </ng-container>
+      <div *ngIf="!isLoading">
+        <app-filter [mod]="'tags'" [tagList]="model?.getTagList()" (filterList)="onFilterTodosList($event)"></app-filter>
+        <app-user-todos-list [model]="model" (selectTodo)="onTodoSelect($event)"></app-user-todos-list>
+      </div>
     </section>
     <section class="content__item content__item--no-padding-tb" [class.is-empty]="!(current$ | async)">
       <app-user-info *ngIf="current$ | async" [model]="current$ | async"></app-user-info>
