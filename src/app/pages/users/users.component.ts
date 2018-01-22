@@ -7,9 +7,9 @@ import { AppService } from '../../app.service';
 import { UserInfoModel } from '../../models/users/user-info.model';
 import { IUser, UserModel } from '../../models/users/user.model';
 import { UsersModel } from '../../models/users/users.model';
-import { IAppState, getAllUsers, getCurrentUser, getUsersLoading, getUsersLoaded } from '../../store/index';
+import { IAppState, getAllUsers, getCurrentUser, getUsersLoading, getUsersLoaded, getFilterQuery } from '../../store/index';
 import { selectUsersList, UsersListState } from '../../store/reducers/users/users.reducer';
-import { UsersListActions, LoadUsers, LoadUsersSuccess, SelectUser } from '../../store/actions/users/users.action';
+import { UsersListActions, LoadUsers, LoadUsersSuccess, SelectUser, FilterUsers } from '../../store/actions/users/users.action';
 import { LoadUserSuccess, UserActionsTypes, LoadUser } from '../../store/actions/users/user.actions';
 
 @Component({
@@ -25,11 +25,15 @@ export class UsersComponent implements OnInit {
   public loaded$: Observable<boolean>;
   public current$: Observable<UserInfoModel>;
 
+  private query$: Observable<string>;
+
   constructor(
     private appService: AppService,
     private store: Store<IAppState>
   ) {
     this.users$ = this.store.select<any>(getAllUsers);
+    this.query$ = this.store.select<any>(getFilterQuery);
+
     this.loading$ = this.store.select<any>(getUsersLoading);
     this.loaded$ = this.store.select<any>(getUsersLoaded);
 
@@ -56,6 +60,6 @@ export class UsersComponent implements OnInit {
    * @param {string} query 
    */
   public onFilterUsersList(query: string): void {
-    // this.model.updateQuery(query);
+    this.store.dispatch(new FilterUsers({ query }));
   }
 }

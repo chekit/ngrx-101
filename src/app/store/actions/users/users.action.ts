@@ -8,7 +8,9 @@ export enum UsersListActions {
 	LOAD_USERS_SUCCESS = '[Users] Load users list succeded',
 	LOAD_USERS_ERROR = '[Users] Load users list failed',
 
-	SELECT_USER = '[Users] Select user from list'
+	SELECT_USER = '[Users] Select user from list',
+
+	FILTER_USERS = '[Users] Filter users list'
 }
 
 /**
@@ -61,4 +63,17 @@ export class SelectUser implements Action {
 	constructor(public payload: {id: number}) {}
 }
 
-export type UsersActions = LoadUsers | LoadUsersError | LoadUsersSuccess | SelectUser;
+/**
+ * Действие - Сортировка списка пользователей
+ * 
+ * @export
+ * @class SelectUser
+ * @implements {Action}
+ */
+export class FilterUsers implements Action {
+	readonly type: string = UsersListActions.FILTER_USERS;
+
+	constructor(public payload: {query: string}) {}
+}
+
+export type UsersActions = LoadUsers | LoadUsersError | LoadUsersSuccess | SelectUser | FilterUsers;

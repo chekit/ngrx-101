@@ -5,12 +5,14 @@ import { UserInfoModel } from '../../../models/users/user-info.model';
 
 export interface UsersListState {
 	data: UserModel[];
+	query: string;
 	loading: boolean;
 	loaded: boolean;
 }
 
 export const initialUsersState: UsersListState = {
 	data: [],
+	query: '',
 	loading: false,
 	loaded: false
 };
@@ -49,11 +51,23 @@ export function usersListReducer(
 				loading: false,
 				loaded: true
 			};
+		case UsersListActions.FILTER_USERS:
+			const query = action.payload.query.toLowerCase().trim();
+
+			console.log(state);
+
+			return {
+				...state,
+				query,
+				loading: false,
+				loaded: true
+			};
 		default:
 			return state;
 	}
 }
 
 export const selectUsersList = (state: UsersListState) => state.data;
+export const selectUsersListQuery = (state: UsersListState) => state.query;
 export const selectUsersListLoading = (state: UsersListState) => state.loading;
 export const selectUsersListLoaded = (state: UsersListState) => state.loaded;

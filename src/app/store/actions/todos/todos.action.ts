@@ -7,7 +7,9 @@ export enum TodosListActions {
 	LOAD_TODOS_ERROR = '[Todos] Load todos list failed',
 	LOAD_TODOS_SUCCESS = '[Todos] Load todos list succeded',
 
-	SELECT_TODO = '[Todos] Select todo from list'
+	SELECT_TODO = '[Todos] Select todo from list',
+
+	FILTER_TODOS = '[Todos] Filter todoslist'
 };
 
 /**
@@ -55,4 +57,10 @@ export class SelectTodo implements Action {
 	constructor(public payload: ICurrentTodo) {}
 }
 
-export type TodosActions = LoadTodos | LoadTodosError | LoadTodosSuccess | SelectTodo;
+export class FilterTodos implements Action {
+	readonly type: string = TodosListActions.FILTER_TODOS;
+
+	constructor(public payload: string) {}
+}
+
+export type TodosActions = LoadTodos | LoadTodosError | LoadTodosSuccess | SelectTodo | FilterTodos;
