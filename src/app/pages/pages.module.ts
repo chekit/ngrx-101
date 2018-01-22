@@ -39,7 +39,12 @@ const routes: Routes = [
     CommonModule,
     ComponentsModule,
     StoreModule.forFeature('app', reducers),
-    EffectsModule.forFeature([UserListEffects, UserInfoEffect, TodosListEffect, TodosUserInfoEffect])
+    EffectsModule.forFeature([
+      UserListEffects,
+      UserInfoEffect,
+      TodosListEffect,
+      TodosUserInfoEffect
+    ])
   ],
   declarations: [
     TodosComponent,

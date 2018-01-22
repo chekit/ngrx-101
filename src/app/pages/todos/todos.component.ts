@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService } from '../../app.service';
-import { TodosModel } from '../../models/todos/todos.model';
-import { ICurrentTodo } from '../../components/todos-list/todos-item/todos-item.component';
-import { ITodo, TodoModel } from '../../models/todos/todo.model';
-import { UserModel } from '../../models/users/user.model';
-import { TodoInfoModel } from '../../models/todos/todo-info.model';
-import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
-import { ITodosPageState } from '../../store/reducers/todos/index';
-import { getAllTodos, getTodosListLoading, getTodosListLoaded, getCurrentUser } from '../../store/index';
-import { LoadTodos, SelectTodo } from '../../store/actions/todos/todos.action';
-import { LoadUser, LoadTodoUser } from '../../store/actions/users/user.actions';
+import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
+import { AppService } from '../../app.service';
+import { ICurrentTodo } from '../../components/todos-list/todos-item/todos-item.component';
+import { TodoInfoModel } from '../../models/todos/todo-info.model';
+import { ITodo, TodoModel } from '../../models/todos/todo.model';
+import { TodosModel } from '../../models/todos/todos.model';
+import { UserModel } from '../../models/users/user.model';
+import { LoadTodos, SelectTodo } from '../../store/actions/todos/todos.action';
+import { LoadTodoUser, LoadUser } from '../../store/actions/users/user.actions';
+import { getAllTodos, getCurrentUser, getTodosListLoaded, getTodosListLoading } from '../../store/index';
+import { ITodosState } from '../../store/reducers/todos/todos.reducer';
 
 @Component({
   selector: 'app-user-todos',
@@ -28,7 +28,7 @@ export class TodosComponent implements OnInit {
 
   constructor(
     private appService: AppService,
-    private store: Store<ITodosPageState>
+    private store: Store<ITodosState>
   ) {
     this.todos$ = this.store.select<any>(getAllTodos);
     this.current$ = this.store.select<any>(getCurrentUser);
