@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
       if (e instanceof NavigationEnd ) {
         this.route = !!e.url.slice(1) ? e.url.slice(1) : e.urlAfterRedirects.slice(1);
       }
-    })
+    });
   }
 
 }

@@ -3,7 +3,7 @@
       <div class="content__item-loading" *ngIf="loading$ | async">
         Loading...
       </div>
-      <div *ngIf="!isLoading">
+      <div *ngIf="$loaded | async">
         <app-filter [mod]="'tags'" [tagList]="model?.getTagList()" (filterList)="onFilterTodosList($event)"></app-filter>
         <app-user-todos-list [model]="model" (selectTodo)="onTodoSelect($event)"></app-user-todos-list>
       </div>
