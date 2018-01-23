@@ -5,7 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { AppService } from '../../../app.service';
 import { UserModel } from '../../../models/users/user.model';
-import { LoadUsersSuccess, UsersListActions, LoadUsersError } from '../../actions/users/users.action';
+import { UsersListActions, LoadUsersSuccess, LoadUsersError } from '../../actions/index';
 
 @Injectable()
 export class UserListEffects {

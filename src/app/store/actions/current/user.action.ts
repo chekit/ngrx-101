@@ -8,6 +8,8 @@ export enum UserActionsTypes {
 	LOAD_TODO_USER = '[User] Load user info for todos list',
 	LOAD_USER_SUCCESS = '[User] Load user info succeded',
 	LOAD_USER_ERROR = '[User] Load user info failed',
+
+	RESET_CURRENT = '[User] Reset current user model'
 };
 
 /**
@@ -55,4 +57,10 @@ export class LoadUserError implements Action {
 	constructor(public payload: any) {}
 }
 
-export type UserActions = LoadUser | LoadUserError | LoadUserSuccess | LoadTodoUser;
+export class ResetCurrent implements Action {
+	readonly type: string = UserActionsTypes.RESET_CURRENT;
+
+	constructor(public payload?: number) {}
+}
+
+export type UserActions = LoadUser | LoadUserError | LoadUserSuccess | LoadTodoUser | ResetCurrent;

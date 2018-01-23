@@ -1,7 +1,7 @@
 import { TodoModel } from '../../../models/todos/todo.model';
 import { TodosActions, TodosListActions } from '../../actions/todos/todos.action';
 
-export interface TodosListState {
+export interface ITodosListState {
 	data: TodoModel[];
 	tags: Set<string>;
 	query: string;
@@ -9,7 +9,7 @@ export interface TodosListState {
 	loaded: boolean;
 }
 
-export const inititalTodosState: TodosListState = {
+export const inititalTodosState: ITodosListState = {
 	data: [],
 	tags: new Set<string>(),
 	query: '',
@@ -17,8 +17,10 @@ export const inititalTodosState: TodosListState = {
 	loaded: false
 };
 
-export function todosListReducer(
-	state: TodosListState = inititalTodosState,
+let cacheTodosList: TodoModel[] = [];
+
+export function reducer(
+	state: ITodosListState = inititalTodosState,
 	action: TodosActions
 ) {
 	switch (action.type) {
@@ -30,6 +32,8 @@ export function todosListReducer(
 		case TodosListActions.LOAD_TODOS_SUCCESS:
 			const tagsSet = new Set<string>();
 			action.payload.map(t => tagsSet.add(`User ${t.userId}`));
+
+			cacheTodosList = [...action.payload];
 
 			return {
 				...state,
@@ -45,9 +49,13 @@ export function todosListReducer(
 				loading: false
 			};
 		case TodosListActions.FILTER_TODOS:
-			console.log(action.payload);
+			const filtered = action.payload
+				? cacheTodosList.filter(t => `User ${t.userId}` === action.payload)
+				: [...cacheTodosList];
+
 			return {
 				...state,
+				data: filtered,
 				query: action.payload,
 				loaded: true,
 				loading: false
@@ -57,7 +65,7 @@ export function todosListReducer(
 	}
 }
 
-export const selectTodosList = (state: TodosListState) => state.data;
-export const selectTodosListTags = (state: TodosListState) => state.tags;
-export const selectTodosLoading = (state: TodosListState) => state.loading;
-export const selectTodosLoaded = (state: TodosListState) => state.loaded;
+export const getData = (state: ITodosListState) => state.data;
+export const getTags = (state: ITodosListState) => state.tags;
+export const getLoading = (state: ITodosListState) => state.loading;
+export const getLoaded = (state: ITodosListState) => state.loaded;

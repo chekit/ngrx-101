@@ -34,6 +34,7 @@ export class LoadUsers implements Action {
  */
 export class LoadUsersSuccess implements Action {
 	readonly type: string = UsersListActions.LOAD_USERS_SUCCESS;
+
 	constructor(public payload: UserModel[]) {}
 }
 
@@ -73,7 +74,7 @@ export class SelectUser implements Action {
 export class FilterUsers implements Action {
 	readonly type: string = UsersListActions.FILTER_USERS;
 
-	constructor(public payload: {query: string}) {}
+	constructor(public payload: string) {}
 }
 
 export type UsersActions = LoadUsers | LoadUsersError | LoadUsersSuccess | SelectUser | FilterUsers;

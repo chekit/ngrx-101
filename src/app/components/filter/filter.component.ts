@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
 
 enum FilterMods {
   SEARCH = 'search',
@@ -11,6 +12,8 @@ enum FilterMods {
   styleUrls: ['./filter.component.scss']
 })
 export class FilterComponent implements OnInit {
+  @Input() filter$: Subject<String>;
+
   @Input() public tagList: Set<string> = new Set();
   
   @Input() public set mod(value: string) {
@@ -24,13 +27,11 @@ export class FilterComponent implements OnInit {
     }
   };
 
-  @Output() public filterList: EventEmitter<string> = new EventEmitter();
-  
   public query: string = null;
 
   public isSearch: boolean = false;
   public isTags: boolean = false;
-  public currentTag: string = null;
+  public currentTag: string = '';
 
   constructor() { }
 
@@ -42,7 +43,7 @@ export class FilterComponent implements OnInit {
    * @param {string} query 
    */
   public filter(query: string): void {
-    this.filterList.emit(query);
+    this.filter$.next(query);
   }
 
   public tracByIndex(index: number): number {
@@ -54,9 +55,11 @@ export class FilterComponent implements OnInit {
    * 
    * @param {string} tagName 
    */
-  public selectByTag(tagName: string) {
-    this.currentTag = !!tagName ? tagName : null;
+  public selectByTag(tagName: string): void {
+    if (this.currentTag !== tagName) {
+      this.currentTag = !!tagName ? tagName : '';
 
-    this.filterList.emit(this.currentTag);
+      this.filter$.next(this.currentTag);
+    }
   }
 }

@@ -10,15 +10,17 @@ export interface UsersListState {
 	loaded: boolean;
 }
 
-export const initialUsersState: UsersListState = {
+export const initialUsersListState: UsersListState = {
 	data: [],
 	query: '',
 	loading: false,
 	loaded: false
 };
 
-export function usersListReducer(
-	state: UsersListState = initialUsersState,
+let cacheUsersList: UserModel[] = [];
+
+export function reducer(
+	state = initialUsersListState,
 	action: UsersActions
 ) {
 	switch (action.type) {
@@ -27,7 +29,9 @@ export function usersListReducer(
 				...state,
 				loading: true
 			};
-		case UsersListActions.LOAD_USERS_SUCCESS: {}
+		case UsersListActions.LOAD_USERS_SUCCESS:
+			cacheUsersList = [...action.payload];
+
 			return {
 				...state,
 				data: action.payload,
@@ -41,12 +45,12 @@ export function usersListReducer(
 				loaded: false
 			};
 		case UsersListActions.FILTER_USERS:
-			const query = action.payload.query.toLowerCase().trim();
-
-			console.log(state);
+			const query = action.payload.toLowerCase().trim();
+			const filtered = cacheUsersList.filter(u => u.name.toLowerCase().indexOf(query) > -1);
 
 			return {
 				...state,
+				data: filtered,
 				query,
 				loading: false,
 				loaded: true
@@ -56,7 +60,7 @@ export function usersListReducer(
 	}
 }
 
-export const selectUsersList = (state: UsersListState) => state.data;
-export const selectUsersListQuery = (state: UsersListState) => state.query;
-export const selectUsersListLoading = (state: UsersListState) => state.loading;
-export const selectUsersListLoaded = (state: UsersListState) => state.loaded;
+export const getData = (state: UsersListState) => state.data;
+export const getQuery = (state: UsersListState) => state.query;
+export const getLoading = (state: UsersListState) => state.loading;
+export const getLoaded = (state: UsersListState) => state.loaded;

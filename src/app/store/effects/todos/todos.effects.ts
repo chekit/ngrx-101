@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 import { AppService } from '../../../app.service';
 import { TodoModel } from '../../../models/todos/todo.model';
-import { TodosListActions, LoadTodosSuccess, LoadTodosError } from '../../actions/todos/todos.action';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { catchError, map } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
+import { TodosListActions, LoadTodosSuccess, LoadTodosError } from '../../actions/index';
 
 @Injectable()
 export class TodosListEffect {

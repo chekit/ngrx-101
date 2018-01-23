@@ -1,63 +1,61 @@
-import { UsersListState, usersListReducer, selectUsersList, selectUsersListLoaded, selectUsersListLoading, selectUsersListQuery } from './users/users.reducer';
-import { ActionReducerMap } from '@ngrx/store/src/models';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { userReducer, UserState, selectUserInfo, selectUserLoading, selectUserLoaded } from './users/user.reducer';
-import { TodosListState, todosListReducer, selectTodosList, selectTodosLoading, selectTodosLoaded, selectTodosListTags } from './todos/todos.reducer';
+import { ActionReducerMap } from '@ngrx/store/src/models';
+
+import * as fromUsersReducer from './users/users.reducer';
+import * as fromUserReducer from './current/user.reducer';
+import * as fromTodosReducer from './todos/todos.reducer';
 
 export interface IAppState {
-	users: UsersListState;
-	todos: TodosListState;
-	current: UserState;
+	users: fromUsersReducer.UsersListState;
+	todos: fromTodosReducer.ITodosListState;
+	current: fromUserReducer.UserState;
 }
 
 // Объект преобразователей состояния
 export const reducers: ActionReducerMap<IAppState> = {
-	users: usersListReducer,
-	current: userReducer,
-	todos: todosListReducer
+	users: fromUsersReducer.reducer,
+	current: fromUserReducer.reducer,
+	todos: fromTodosReducer.reducer
 };
 
 // Получаем доступ к корню дерева состояний feature модуля
-export const getAppState = createFeatureSelector<IAppState>(
-	'app'
-);
+export const getAppState = createFeatureSelector<IAppState>('app');
 
-// Получаем состояние списка пользователей
-export const getUsersListState = createSelector(
+/*** Получаем состояния списка пользователей ***/
+export const selectUsersListState = createSelector(
 	getAppState,
 	(state: IAppState) => state.users
 );
 
-/*** Получаем состояния списка пользователей ***/
 // Получаем значение свойства data
-export const getAllUsers = createSelector(getUsersListState, selectUsersList);
+export const selectAllUsers = createSelector(selectUsersListState, fromUsersReducer.getData);
 // Получаем части состояния списка пользователей
 // Получаем значение свойства loading
-export const getUsersLoading = createSelector(getUsersListState, selectUsersListLoading);
+export const selectUsersLoading = createSelector(selectUsersListState, fromUsersReducer.getLoading);
 // Получаем части состояния списка пользователей
 // Получаем значение свойства loaded
-export const getUsersLoaded = createSelector(getUsersListState, selectUsersListLoaded);
+export const selectUsersLoaded = createSelector(selectUsersListState, fromUsersReducer.getLoaded);
 // Получаем части состояния списка пользователей
 // Получаем значение свойства query
-export const getFilterQuery = createSelector(getUsersListState, selectUsersListQuery);
+export const selectUsersFilterQuery = createSelector(selectUsersListState, fromUsersReducer.getQuery);
 
-/*** Получаем состояние выбранного пользователя ***/
-export const getCurrentUserState = createSelector(
+// /*** Получаем состояние выбранного пользователя ***/
+export const selectCurrentUserState = createSelector(
 	getAppState,
 	(state: IAppState) => state.current
 );
 
-export const getCurrentUser = createSelector(getCurrentUserState, selectUserInfo);
-export const getCurrentUserLoading = createSelector(getCurrentUserState, selectUserLoading);
-export const getCurrentUserLoaded = createSelector(getCurrentUserState, selectUserLoaded);
+export const selectCurrentUser = createSelector(selectCurrentUserState, fromUserReducer.getData);
+export const selectCurrentUserLoading = createSelector(selectCurrentUserState, fromUserReducer.getLoading);
+export const selectCurrentUserLoaded = createSelector(selectCurrentUserState, fromUserReducer.getLoaded);
 
-/*** Получаем состояние списка всех дел ***/
-export const getTodosListState = createSelector(
+// /*** Получаем состояние списка всех дел ***/
+export const selectTodosListState = createSelector(
 	getAppState,
 	(state: IAppState) => state.todos
 );
 
-export const getAllTodos = createSelector(getTodosListState, selectTodosList);
-export const getAllTodosTags = createSelector(getTodosListState, selectTodosListTags);
-export const getTodosListLoading = createSelector(getTodosListState, selectTodosLoading);
-export const getTodosListLoaded = createSelector(getTodosListState, selectTodosLoaded);
+export const selectAllTodos = createSelector(selectTodosListState, fromTodosReducer.getData);
+export const selectAllTodosTags = createSelector(selectTodosListState, fromTodosReducer.getTags);
+export const selectTodosListLoading = createSelector(selectTodosListState, fromTodosReducer.getLoading);
+export const selectTodosListLoaded = createSelector(selectTodosListState, fromTodosReducer.getLoaded);

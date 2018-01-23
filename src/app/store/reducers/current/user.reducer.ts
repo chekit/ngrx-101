@@ -1,7 +1,6 @@
 import { UserInfoModel } from '../../../models/users/user-info.model';
 import { UserModel } from '../../../models/users/user.model';
-import { UserActions, UserActionsTypes } from '../../actions/users/user.actions';
-
+import { UserActions, UserActionsTypes } from './../../actions/index';
 
 export interface UserState {
 	data: UserInfoModel;
@@ -15,7 +14,7 @@ const initialUserInfo: UserState = {
 	loaded: false
 };
 
-export function userReducer(
+export function reducer(
 	state: UserState = initialUserInfo,
 	action: UserActions
 ) {
@@ -41,11 +40,18 @@ export function userReducer(
 				loading: false,
 				loaded: false
 			};
+		case UserActionsTypes.RESET_CURRENT:
+			return {
+				...state,
+				data: null,
+				loading: false,
+				loaded: false
+			};
 		default:
 			return state;
 	}
 }
 
-export const selectUserInfo = (state: UserState) => state.data;
-export const selectUserLoading = (state: UserState) => state.loading;
-export const selectUserLoaded = (state: UserState) => state.loaded;
+export const getData = (state: UserState) => state.data;
+export const getLoading = (state: UserState) => state.loading;
+export const getLoaded = (state: UserState) => state.loaded;
