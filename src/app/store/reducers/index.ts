@@ -2,11 +2,11 @@ import { UsersListState, usersListReducer, selectUsersList, selectUsersListLoade
 import { ActionReducerMap } from '@ngrx/store/src/models';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { userReducer, UserState, selectUserInfo, selectUserLoading, selectUserLoaded } from './users/user.reducer';
-import { ITodosState, todosListReducer, selectTodosList, selectTodosLoading, selectTodosLoaded, selectTodosListTags } from './todos/todos.reducer';
+import { TodosListState, todosListReducer, selectTodosList, selectTodosLoading, selectTodosLoaded, selectTodosListTags } from './todos/todos.reducer';
 
 export interface IAppState {
 	users: UsersListState;
-	todos: ITodosState;
+	todos: TodosListState;
 	current: UserState;
 }
 

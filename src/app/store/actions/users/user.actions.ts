@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
 import { UserModel } from '../../../models/users/user.model';
 import { UserInfoModel } from '../../../models/users/user-info.model';
+import { TodoModel } from '../../../models/todos/todo.model';
 
 export enum UserActionsTypes {
 	LOAD_USER = '[User] Load user info',
@@ -19,11 +20,13 @@ export enum UserActionsTypes {
 export class LoadUser implements Action {
 	readonly type: string = UserActionsTypes.LOAD_USER;
 
-	constructor(public payload: { id: number}) {}
+	constructor(public payload: number) {}
 }
 
-export class LoadTodoUser extends LoadUser {
+export class LoadTodoUser {
 	readonly type: string = UserActionsTypes.LOAD_TODO_USER;
+
+	constructor(public payload: { userId: number; todo: TodoModel; }) {}
 }
 
 /**

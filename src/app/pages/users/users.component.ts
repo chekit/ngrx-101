@@ -50,8 +50,7 @@ export class UsersComponent implements OnInit {
    * @param {number} id 
    */
   public onUserSelect(id: number): void {
-    this.store.dispatch(new SelectUser({ id }));
-    this.store.dispatch(new LoadUser({ id }));
+    this.store.dispatch(new LoadUser(id));
   }
 
   /**

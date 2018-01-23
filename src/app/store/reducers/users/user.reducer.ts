@@ -34,7 +34,7 @@ export function userReducer(
 				loading: false,
 				loaded: true
 			};
-		case UserActionsTypes.LOAD_USER_SUCCESS:
+		case UserActionsTypes.LOAD_USER_ERROR:
 			return {
 				...state,
 				data: null,

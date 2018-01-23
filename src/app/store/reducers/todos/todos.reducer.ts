@@ -1,7 +1,7 @@
 import { TodoModel } from '../../../models/todos/todo.model';
 import { TodosActions, TodosListActions } from '../../actions/todos/todos.action';
 
-export interface ITodosState {
+export interface TodosListState {
 	data: TodoModel[];
 	tags: Set<string>;
 	query: string;
@@ -9,16 +9,16 @@ export interface ITodosState {
 	loaded: boolean;
 }
 
-export const inititalTodosState: ITodosState = {
+export const inititalTodosState: TodosListState = {
 	data: [],
-	tags: new Set<string>('asdds'),
+	tags: new Set<string>(),
 	query: '',
 	loading: false,
 	loaded: false
 };
 
 export function todosListReducer(
-	state: ITodosState = inititalTodosState,
+	state: TodosListState = inititalTodosState,
 	action: TodosActions
 ) {
 	switch (action.type) {
@@ -44,17 +44,6 @@ export function todosListReducer(
 				loaded: false,
 				loading: false
 			};
-		case TodosListActions.SELECT_TODO:
-			return {
-				...state,
-				data: state.data.map((t: TodoModel) => {
-					t['isCurrent'] = t.id === action.payload.id;
-
-					return t;
-				}),
-				loaded: true,
-				loading: false
-			};
 		case TodosListActions.FILTER_TODOS:
 			console.log(action.payload);
 			return {
@@ -68,7 +57,7 @@ export function todosListReducer(
 	}
 }
 
-export const selectTodosList = (state: ITodosState) => state.data;
-export const selectTodosListTags = (state: ITodosState) => state.tags;
-export const selectTodosLoading = (state: ITodosState) => state.loading;
-export const selectTodosLoaded = (state: ITodosState) => state.loaded;
+export const selectTodosList = (state: TodosListState) => state.data;
+export const selectTodosListTags = (state: TodosListState) => state.tags;
+export const selectTodosLoading = (state: TodosListState) => state.loading;
+export const selectTodosLoaded = (state: TodosListState) => state.loaded;

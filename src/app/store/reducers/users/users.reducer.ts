@@ -27,12 +27,10 @@ export function usersListReducer(
 				...state,
 				loading: true
 			};
-		case UsersListActions.LOAD_USERS_SUCCESS:
-			const data = action.payload;
-
+		case UsersListActions.LOAD_USERS_SUCCESS: {}
 			return {
 				...state,
-				data,
+				data: action.payload,
 				loading: false,
 				loaded: true
 			};
@@ -41,17 +39,6 @@ export function usersListReducer(
 				...state,
 				loading: false,
 				loaded: false
-			};
-		case UsersListActions.SELECT_USER:
-			return {
-				...state,
-				data: state.data.map(u => {
-					u['isCurrent'] = u.id === action.payload.id;
-
-					return u;
-				}),
-				loading: false,
-				loaded: true
 			};
 		case UsersListActions.FILTER_USERS:
 			const query = action.payload.query.toLowerCase().trim();

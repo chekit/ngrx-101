@@ -17,9 +17,8 @@ import { TodosUserInfoEffect } from '../store/effects/todos/user.effects';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: RoutesNames.USERS,
-    pathMatch: 'full'
-  },
+    component: UsersComponent
+  }/* ,
   {
     path: RoutesNames.USERS,
     component: UsersComponent
@@ -27,7 +26,7 @@ const routes: Routes = [
   {
     path: RoutesNames.TODOS,
     component: TodosComponent
-  }
+  } */
 ];
 
 @NgModule({

@@ -17,9 +17,9 @@ export class TodosUserInfoEffect {
 	public loadUserEffect$ = this.actions$.ofType(UserActionsTypes.LOAD_TODO_USER)
 		.pipe(
 			switchMap((action: any) => {
-				return this.appService.getUser(action.payload.id)
+				return this.appService.getUser(action.payload.userId)
 					.pipe(
-						map((user: UserModel) => new UserInfoModel({ user })),
+						map((user: UserModel) => new UserInfoModel({ user, todo: action.payload.todo })),
 						map(res => new LoadUserSuccess(res)),
 						catchError(error => of(new LoadUserError(error)))
 					);
