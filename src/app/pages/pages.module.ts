@@ -16,17 +16,13 @@ import { TodosUserInfoEffect } from '../store/effects/todos/user.effects';
 
 const routes: Routes = [
   {
-    path: '',
-    component: UsersComponent
-  }/* ,
-  {
     path: RoutesNames.USERS,
     component: UsersComponent
   },
   {
     path: RoutesNames.TODOS,
     component: TodosComponent
-  } */
+  }
 ];
 
 @NgModule({

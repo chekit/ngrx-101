@@ -9,6 +9,7 @@ import { ComponentsModule } from './components/components.module';
 import { PagesModule } from './pages/pages.module';
 
 import { storeFreeze } from 'ngrx-store-freeze';
+import { RouterModule, Routes } from '@angular/router';
 
 const environment = {
   development: true,
@@ -19,6 +20,18 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
   ? [storeFreeze]
   : [];
 
+// const routes: Routes = [
+//   {
+//     path: '',
+//     pathMatch: 'full',
+//     redirectTo: 'users'
+//   },
+//   {
+//     path: 'users',
+//     loadChildren: './pages/pages.module.ts#PagesModule'
+//   }
+// ];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +41,7 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
     HttpClientModule,
     PagesModule,
     ComponentsModule,
+    // RouterModule.forRoot(routes),
     StoreModule.forRoot({}, { metaReducers }),
     EffectsModule.forRoot([]),
     environment.development ? StoreDevtoolsModule.instrument() : [],
