@@ -11,7 +11,7 @@ import { UserModel } from '../../models/users/user.model';
 import { LoadTodos, SelectTodo, FilterTodos } from '../../store/actions/todos/todos.action';
 import { LoadTodoUser, LoadUser } from '../../store/actions/users/user.actions';
 import { getAllTodos, getCurrentUser, getTodosListLoaded, getTodosListLoading, getTodosListState, getAllTodosTags } from '../../store/index';
-import { ITodosState } from '../../store/reducers/todos/todos.reducer';
+import { TodosListState } from '../../store/reducers/todos/todos.reducer';
 import { UserInfoModel } from '../../models/users/user-info.model';
 
 @Component({
@@ -28,7 +28,7 @@ export class TodosComponent implements OnInit {
 
   constructor(
     private appService: AppService,
-    private store: Store<ITodosState>
+    private store: Store<TodosListState>
   ) {
     this.todos$ = this.store.select<any>(getAllTodos);
     this.tags$ = this.store.select<any>(getAllTodosTags);
@@ -46,9 +46,8 @@ export class TodosComponent implements OnInit {
    * 
    * @param {ICurrentTodo} info 
    */
-  public onTodoSelect(selected: ICurrentTodo): void {
-    this.store.dispatch(new SelectTodo(selected));
-    this.store.dispatch(new LoadTodoUser({ id: selected.userId }));
+  public onTodoSelect(selected: TodoModel): void {
+    this.store.dispatch(new LoadTodoUser({userId: selected.userId, todo: selected}));
   }
 
   /**

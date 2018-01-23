@@ -28,7 +28,7 @@ export class TodosItemComponent implements OnInit {
    */
   public selectTodo() {
     if (!this.isCurrent) {
-      this.todoSelected.emit({ userId: this.model.userId, id: this.model.id });
+      this.todoSelected.emit(this.model);
     }
   }
 

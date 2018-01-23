@@ -18,8 +18,8 @@ export class UserInfoEffect {
 		.pipe(
 			switchMap((action: any) => {
 				return forkJoin(
-					this.appService.getUser(action.payload.id),
-					this.appService.getUserTodos(action.payload.id)
+					this.appService.getUser(action.payload),
+					this.appService.getUserTodos(action.payload)
 				)
 					.pipe(
 						map((res: [UserModel, TodoModel[]]) => new UserInfoModel({ user: res[0], todos: res[1] })),

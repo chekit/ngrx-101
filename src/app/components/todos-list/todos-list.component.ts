@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy
 import { ICurrentTodo } from './todos-item/todos-item.component';
 import { TodosModel } from '../../models/todos/todos.model';
 import { TodoModel } from '../../models/todos/todo.model';
+import { UserInfoModel } from '../../models/users/user-info.model';
 
 @Component({
   selector: 'app-user-todos-list',
@@ -11,6 +12,7 @@ import { TodoModel } from '../../models/todos/todo.model';
 })
 export class TodosListComponent implements OnInit {
   @Input() public model: TodoModel[];
+  @Input() public current: UserInfoModel;
 
   @Output() selectTodo: EventEmitter<any> = new EventEmitter();
 
@@ -26,9 +28,9 @@ export class TodosListComponent implements OnInit {
   /**
    * Handler события выбора задания
    * 
-   * @param {ICurrentTodo} $event 
+   * @param {TodoModel} $event 
    */
-  public onTodoSelected($event: ICurrentTodo) {
+  public onTodoSelected($event: TodoModel) {
     this.selectTodo.emit($event);
   }
 }

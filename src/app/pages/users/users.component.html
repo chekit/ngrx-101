@@ -5,7 +5,7 @@
     </div>
     <ng-container *ngIf="loaded$ | async">
       <app-filter [mod]="'search'" (filterList)="onFilterUsersList($event)"></app-filter>
-      <app-users-list [model]="users$ | async" (userSelect)="onUserSelect($event)"></app-users-list>
+      <app-users-list [model]="users$ | async" [current]="current$ | async" (userSelect)="onUserSelect($event)"></app-users-list>
     </ng-container>
   </section>
   <section class="content__item content__item--no-padding-tb" [class.is-empty]="!(current$ | async)?.user">

@@ -1,6 +1,6 @@
 <ul class="todos-list" *ngIf="model?.length > 0">
   <li class="todos-list__item" *ngFor="let todo of model; trackBy: trackById">
-    <app-todos-item [model]="todo"  [isCurrent]="todo.isCurrent" (todoSelected)="onTodoSelected($event)"></app-todos-item>
+    <app-todos-item [model]="todo"  [isCurrent]="todo.id === current?.todo?.id" (todoSelected)="onTodoSelected($event)"></app-todos-item>
   </li>
 </ul>
 <p class="todos-list-empty" *ngIf="model?.length === 0">No Todos to Show</p>  

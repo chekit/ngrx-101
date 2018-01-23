@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
 import { UsersModel } from '../../models/users/users.model';
 import { UserModel } from '../../models/users/user.model';
+import { UserInfoModel } from '../../models/users/user-info.model';
 
 @Component({
   selector: 'app-users-list',
@@ -10,6 +11,7 @@ import { UserModel } from '../../models/users/user.model';
 })
 export class UsersListComponent implements OnInit {
   @Input() public model: UserModel[];
+  @Input() public current: UserInfoModel;
 
   @Output() userSelect: EventEmitter<number> = new EventEmitter();
 

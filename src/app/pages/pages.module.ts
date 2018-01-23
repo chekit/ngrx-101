@@ -16,11 +16,6 @@ import { TodosUserInfoEffect } from '../store/effects/todos/user.effects';
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: RoutesNames.USERS,
-    pathMatch: 'full'
-  },
-  {
     path: RoutesNames.USERS,
     component: UsersComponent
   },
