@@ -4,7 +4,7 @@ import * as fromUsersReducer from './../reducers/users/users.reducer';
 
 /*** Получаем состояния списка пользователей ***/
 export const selectUsersListState = createSelector(
-	fromReducers.getAppState,
+	fromReducers.selectAppState,
 	(state: fromReducers.IAppState) => state.users
 );
 

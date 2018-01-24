@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
@@ -11,7 +12,7 @@ import { TodosComponent } from './todos/todos.component';
 import { UsersComponent } from './users/users.component';
 
 
-const routes: Routes = [
+const ROUTES: Routes = [
   {
     path: '',
     pathMatch: 'full',
@@ -34,8 +35,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     ComponentsModule,
-
-    RouterModule.forRoot(routes),
+    RouterModule.forChild(ROUTES),
 
     StoreModule.forFeature('app', fromStore.reducers),
     EffectsModule.forFeature(fromStore.effects)
@@ -43,9 +43,6 @@ const routes: Routes = [
   declarations: [
     TodosComponent,
     UsersComponent
-  ],
-  exports: [
-    RouterModule
   ]
 })
 export class PagesModule { }

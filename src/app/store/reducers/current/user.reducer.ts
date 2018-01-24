@@ -2,20 +2,20 @@ import { UserInfoModel } from '../../../models/users/user-info.model';
 import { UserModel } from '../../../models/users/user.model';
 import { UserActions, UserActionsTypes } from './../../actions/index';
 
-export interface UserState {
+export interface IUserState {
 	data: UserInfoModel;
 	loading: boolean;
 	loaded: boolean;
 }
 
-const initialUserInfo: UserState = {
+const initialUserInfo: IUserState = {
 	data: null,
 	loading: false,
 	loaded: false
 };
 
 export function reducer(
-	state: UserState = initialUserInfo,
+	state: IUserState = initialUserInfo,
 	action: UserActions
 ) {
 	switch (action.type) {
@@ -52,6 +52,6 @@ export function reducer(
 	}
 }
 
-export const getData = (state: UserState) => state.data;
-export const getLoading = (state: UserState) => state.loading;
-export const getLoaded = (state: UserState) => state.loaded;
+export const getData = (state: IUserState) => state.data;
+export const getLoading = (state: IUserState) => state.loading;
+export const getLoaded = (state: IUserState) => state.loaded;

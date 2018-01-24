@@ -5,7 +5,7 @@ import * as fromTodosReducer from './../reducers/todos/todos.reducer';
 
 // /*** Получаем состояние списка всех дел ***/
 export const selectTodosListState = createSelector(
-	fromReducers.getAppState,
+	fromReducers.selectAppState,
 	(state: fromReducers.IAppState) => state.todos
 );
 

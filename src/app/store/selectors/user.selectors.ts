@@ -4,7 +4,7 @@ import * as fromUserReducer from './../reducers/current/user.reducer';
 
 /*** Получаем состояние выбранного пользователя ***/
 export const selectCurrentUserState = createSelector(
-	fromReducers.getAppState,
+	fromReducers.selectAppState,
 	(state: fromReducers.IAppState) => state.current
 );
 

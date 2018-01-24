@@ -6,9 +6,9 @@ import * as fromUserReducer from './current/user.reducer';
 import * as fromTodosReducer from './todos/todos.reducer';
 
 export interface IAppState {
-	users: fromUsersReducer.UsersListState;
+	users: fromUsersReducer.IUsersListState;
 	todos: fromTodosReducer.ITodosListState;
-	current: fromUserReducer.UserState;
+	current: fromUserReducer.IUserState;
 }
 
 // Объект преобразователей состояния
@@ -19,4 +19,4 @@ export const reducers: ActionReducerMap<IAppState> = {
 };
 
 // Получаем доступ к корню дерева состояний feature модуля
-export const getAppState = createFeatureSelector<IAppState>('app');
+export const selectAppState = createFeatureSelector<IAppState>('app');

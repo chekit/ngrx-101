@@ -3,14 +3,14 @@ import { UsersActions, UsersListActions } from '../../actions/users/users.action
 import { UsersModel } from '../../../models/users/users.model';
 import { UserInfoModel } from '../../../models/users/user-info.model';
 
-export interface UsersListState {
+export interface IUsersListState {
 	data: UserModel[];
 	query: string;
 	loading: boolean;
 	loaded: boolean;
 }
 
-export const initialUsersListState: UsersListState = {
+export const initialUsersListState: IUsersListState = {
 	data: [],
 	query: '',
 	loading: false,
@@ -60,7 +60,7 @@ export function reducer(
 	}
 }
 
-export const getData = (state: UsersListState) => state.data;
-export const getQuery = (state: UsersListState) => state.query;
-export const getLoading = (state: UsersListState) => state.loading;
-export const getLoaded = (state: UsersListState) => state.loaded;
+export const getData = (state: IUsersListState) => state.data;
+export const getQuery = (state: IUsersListState) => state.query;
+export const getLoading = (state: IUsersListState) => state.loading;
+export const getLoaded = (state: IUsersListState) => state.loaded;
