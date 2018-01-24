@@ -1,15 +1,15 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { forkJoin } from 'rxjs/observable/forkJoin';
+import { Subject } from 'rxjs/Subject';
+import { Subscription } from 'rxjs/Subscription';
 import { AppService } from '../../app.service';
 import { UserInfoModel } from '../../models/users/user-info.model';
 import { IUser, UserModel } from '../../models/users/user.model';
 import { UsersModel } from '../../models/users/users.model';
 import * as fromStore from '../../store/index';
-import { Subject } from 'rxjs/Subject';
-import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-users',
