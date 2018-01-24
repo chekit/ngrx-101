@@ -1,15 +1,14 @@
 <main class="content">
   <section class="content__item content__item--no-padding-tb">
-    <div class="content__item-loading" *ngIf="loading$ | async">
-      Loading...
-    </div>
-    <ng-container *ngIf="loaded$ | async">
+    <app-preloader *ngIf="loadingUsers$ | async"></app-preloader>
+    <ng-container *ngIf="loadedUsers$ | async">
       <app-filter [mod]="'search'" [filter$]="filterSubject$"></app-filter>
       <app-users-list [model]="users$ | async" [current]="current$ | async" (userSelect)="onUserSelect($event)"></app-users-list>
     </ng-container>
   </section>
   <section class="content__item content__item--no-padding-tb" [class.is-empty]="!(current$ | async)?.user">
-    <app-user-info *ngIf="(current$ | async)?.user" [model]="current$ | async"></app-user-info>
-    <p class="content__item-text" *ngIf="!(current$ | async)?.user">Select a person on the left</p>
+    <app-preloader *ngIf="loadingCurrent$ | async"></app-preloader>
+    <app-user-info *ngIf="(current$ | async)?.user && (loadedCurrent$ | async)" [model]="current$ | async"></app-user-info>
+    <p class="content__item-text" *ngIf="!(loadingCurrent$ | async) && !(loadedCurrent$ | async)">Select a person on the left</p>
   </section>
 </main>

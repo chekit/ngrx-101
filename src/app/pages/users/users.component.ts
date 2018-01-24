@@ -20,9 +20,12 @@ export class UsersComponent implements OnInit, OnDestroy {
   public isLoading: boolean = true;
 
   public users$: Observable<UserModel[]>;
-  public loading$: Observable<boolean>;
-  public loaded$: Observable<boolean>;
+  public loadingUsers$: Observable<boolean>;
+  public loadedUsers$: Observable<boolean>;
+
   public current$: Observable<UserInfoModel>;
+  public loadingCurrent$: Observable<boolean>;
+  public loadedCurrent$: Observable<boolean>;
 
   private query$: Observable<string>;
 
@@ -37,10 +40,12 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.users$ = this.store.select<any>(fromStore.selectAllUsers);
     this.query$ = this.store.select<any>(fromStore.selectUsersFilterQuery);
 
-    this.loading$ = this.store.select<any>(fromStore.selectUsersLoading);
-    this.loaded$ = this.store.select<any>(fromStore.selectUsersLoaded);
-
+    this.loadingUsers$ = this.store.select<any>(fromStore.selectUsersLoading);
+    this.loadedUsers$ = this.store.select<any>(fromStore.selectUsersLoaded);
+    
     this.current$ = this.store.select<any>(fromStore.selectCurrentUser);
+    this.loadingCurrent$ = this.store.select<any>(fromStore.selectCurrentUserLoading);
+    this.loadedCurrent$ = this.store.select<any>(fromStore.selectCurrentUserLoaded);
   }
 
   ngOnInit() {

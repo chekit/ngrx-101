@@ -1,15 +1,14 @@
 <main class="content">
   <section class="content__item content__item--no-padding-tb">
-    <div class="content__item-loading" *ngIf="loading$ | async">
-      Loading...
-    </div>
-    <ng-container *ngIf="loaded$ | async">
+      <app-preloader *ngIf="loadingTodos$ | async"></app-preloader>
+    <ng-container *ngIf="loadedTodos$ | async">
       <app-filter [mod]="'tags'" [tagList]="tags$ | async" [filter$]="filterSubject$"></app-filter>
       <app-user-todos-list [model]="todos$ | async" [current]="current$ | async" (selectTodo)="onTodoSelect($event)"></app-user-todos-list>
     </ng-container>
   </section>
   <section class="content__item content__item--no-padding-tb" [class.is-empty]="!(current$ | async)">
-    <app-user-info *ngIf="current$ | async" [model]="current$ | async"></app-user-info>
-    <p class="content__item-text" *ngIf="!(current$ | async)">Select ToDo on the left</p>
+    <app-preloader *ngIf="loadingCurrent$ | async"></app-preloader>
+    <app-user-info *ngIf="(current$ | async) && (loadedCurrent$ | async)" [model]="current$ | async"></app-user-info>
+    <p class="content__item-text" *ngIf="!(loadingCurrent$ | async) && !(loadedCurrent$ | async)">Select ToDo on the left</p>
   </section>
 </main>

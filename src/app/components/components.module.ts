@@ -11,6 +11,7 @@ import { UserTodoComponent } from './user-info/user-todo-list/user-todo/user-tod
 import { FormsModule } from '@angular/forms';
 import { TodosListComponent } from './todos-list/todos-list.component';
 import { TodosItemComponent } from './todos-list/todos-item/todos-item.component';
+import { PreloaderComponent } from './preloader/preloader.component';
 
 @NgModule({
   imports: [
@@ -29,14 +30,16 @@ import { TodosItemComponent } from './todos-list/todos-item/todos-item.component
     UserTodoComponent,
     /*** Todo ***/
     TodosListComponent,
-    TodosItemComponent
+    TodosItemComponent,
+    PreloaderComponent
   ],
   exports: [
     HeaderComponent,
     FilterComponent,
     UsersListComponent,
     UserInfoComponent,
-    TodosListComponent
+    TodosListComponent,
+    PreloaderComponent
   ]
 })
 export class ComponentsModule { }

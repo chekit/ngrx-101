@@ -21,10 +21,14 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class TodosComponent implements OnInit, OnDestroy {
   public todos$: Observable<TodoModel[]>;
+  public loadingTodos$: Observable<boolean>;
+  public loadedTodos$: Observable<boolean>;
+
   public tags$: Observable<Set<string>>;
-  public loading$: Observable<boolean>;
-  public loaded$: Observable<boolean>;
+
   public current$: Observable<UserInfoModel>;
+  public loadingCurrent$: Observable<boolean>;
+  public loadedCurrent$: Observable<boolean>;
 
   public filterSubject$ = new Subject<string>();
 
@@ -35,10 +39,14 @@ export class TodosComponent implements OnInit, OnDestroy {
     private store: Store<fromStore.IAppState>
   ) {
     this.todos$ = this.store.select<any>(fromStore.selectAllTodos);
+    this.loadingTodos$ = this.store.select<any>(fromStore.selectTodosListLoading);
+    this.loadedTodos$ = this.store.select<any>(fromStore.selectTodosListLoaded);
+
     this.tags$ = this.store.select<any>(fromStore.selectAllTodosTags);
+
     this.current$ = this.store.select<any>(fromStore.selectCurrentUser);
-    this.loading$ = this.store.select<any>(fromStore.selectTodosListLoading);
-    this.loaded$ = this.store.select<any>(fromStore.selectTodosListLoaded);
+    this.loadingCurrent$ = this.store.select<any>(fromStore.selectCurrentUserLoading);
+    this.loadedCurrent$ = this.store.select<any>(fromStore.selectCurrentUserLoaded);
   }
 
   ngOnInit() {

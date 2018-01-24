@@ -22,7 +22,14 @@ export function reducer(
 		case UserActionsTypes.LOAD_USER:
 			return {
 				...state,
-				loading: true
+				loading: true,
+				loaded: false
+			};
+		case UserActionsTypes.LOAD_TODO_USER:
+			return {
+				...state,
+				loading: true,
+				loaded: false
 			};
 		case UserActionsTypes.LOAD_USER_SUCCESS:
 			const data = action.payload;
