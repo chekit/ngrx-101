@@ -43,7 +43,7 @@ export class TodosComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.store.dispatch(new fromStore.LoadTodos());
-
+    this.store.dispatch(new fromStore.ResetCurrent());
 
     this.sub = this.filterSubject$
       .subscribe((tag: string) => {

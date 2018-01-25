@@ -45,6 +45,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.store.dispatch(new fromStore.LoadUsers());
+    this.store.dispatch(new fromStore.ResetCurrent());
 
     this.sub = this.filterSubject$
       .subscribe((query: string) => {
