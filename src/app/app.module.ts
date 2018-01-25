@@ -42,7 +42,7 @@ const ROUTES: Routes = [
     RouterModule.forRoot(ROUTES),
     StoreModule.forRoot({}, { metaReducers }),
     EffectsModule.forRoot([]),
-    // environment.development ? StoreDevtoolsModule.instrument() : [],
+    environment.development ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [],
   bootstrap: [
