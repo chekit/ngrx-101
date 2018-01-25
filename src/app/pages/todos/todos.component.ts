@@ -8,10 +8,11 @@ import { TodoInfoModel } from '../../models/todos/todo-info.model';
 import { ITodo, TodoModel } from '../../models/todos/todo.model';
 import { TodosModel } from '../../models/todos/todos.model';
 import { UserModel } from '../../models/users/user.model';
-import { LoadTodos, SelectTodo } from '../../store/actions/todos/todos.action';
+import { LoadTodos, SelectTodo, FilterTodos } from '../../store/actions/todos/todos.action';
 import { LoadTodoUser, LoadUser } from '../../store/actions/users/user.actions';
-import { getAllTodos, getCurrentUser, getTodosListLoaded, getTodosListLoading } from '../../store/index';
+import { getAllTodos, getCurrentUser, getTodosListLoaded, getTodosListLoading, getTodosListState, getAllTodosTags } from '../../store/index';
 import { ITodosState } from '../../store/reducers/todos/todos.reducer';
+import { UserInfoModel } from '../../models/users/user-info.model';
 
 @Component({
   selector: 'app-user-todos',
@@ -19,18 +20,18 @@ import { ITodosState } from '../../store/reducers/todos/todos.reducer';
   styleUrls: ['./todos.component.scss']
 })
 export class TodosComponent implements OnInit {
-  public model: any = null;
-
   public todos$: Observable<TodoModel[]>;
+  public tags$: Observable<Set<string>>;
   public loading$: Observable<boolean>;
   public loaded$: Observable<boolean>;
-  public current$: any;
+  public current$: Observable<UserInfoModel>;
 
   constructor(
     private appService: AppService,
     private store: Store<ITodosState>
   ) {
     this.todos$ = this.store.select<any>(getAllTodos);
+    this.tags$ = this.store.select<any>(getAllTodosTags);
     this.current$ = this.store.select<any>(getCurrentUser);
     this.loading$ = this.store.select<any>(getTodosListLoading);
     this.loaded$ = this.store.select<any>(getTodosListLoaded);
@@ -56,6 +57,6 @@ export class TodosComponent implements OnInit {
    * @param {string} tag 
    */
   public onFilterTodosList(tag: string): void {
-    this.model.updateTag(tag);
+    this.store.dispatch(new FilterTodos(tag));
   }
 }

@@ -4,7 +4,7 @@
       Loading...
     </div>
     <ng-container *ngIf="loaded$ | async">
-      <app-filter [style]="'tags'" [tagList]="" (filterList)="onFilterTodosList($event)"></app-filter>
+      <app-filter [mod]="'tags'" [tagList]="tags$ | async" (filterList)="onFilterTodosList($event)"></app-filter>
       <app-user-todos-list [model]="todos$ | async" (selectTodo)="onTodoSelect($event)"></app-user-todos-list>
     </ng-container>
   </section>

@@ -3,12 +3,16 @@ import { TodosActions, TodosListActions } from '../../actions/todos/todos.action
 
 export interface ITodosState {
 	data: TodoModel[];
+	tags: Set<string>;
+	query: string;
 	loading: boolean;
 	loaded: boolean;
 }
 
 export const inititalTodosState: ITodosState = {
 	data: [],
+	tags: new Set<string>('asdds'),
+	query: '',
 	loading: false,
 	loaded: false
 };
@@ -24,9 +28,13 @@ export function todosReducer(
 				loading: true
 			};
 		case TodosListActions.LOAD_TODOS_SUCCESS:
+			const tagsSet = new Set<string>();
+			action.payload.map(t => tagsSet.add(`User ${t.userId}`));
+
 			return {
 				...state,
 				data: action.payload,
+				tags: tagsSet,
 				loaded: true,
 				loading: false
 			};
@@ -47,11 +55,20 @@ export function todosReducer(
 				loaded: true,
 				loading: false
 			};
+		case TodosListActions.FILTER_TODOS:
+			console.log(action.payload);
+			return {
+				...state,
+				query: action.payload,
+				loaded: true,
+				loading: false
+			};
 		default:
 			return state;
 	}
 }
 
 export const selectTodosList = (state: ITodosState) => state.data;
+export const selectTodosListTags = (state: ITodosState) => state.tags;
 export const selectTodosLoading = (state: ITodosState) => state.loading;
 export const selectTodosLoaded = (state: ITodosState) => state.loaded;

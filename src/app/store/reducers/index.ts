@@ -1,8 +1,8 @@
-import { UsersListState, usersListReducer, selectUsersList, selectUsersListLoaded, selectUsersListLoading } from './users/users.reducer';
+import { UsersListState, usersListReducer, selectUsersList, selectUsersListLoaded, selectUsersListLoading, selectUsersListQuery } from './users/users.reducer';
 import { ActionReducerMap } from '@ngrx/store/src/models';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { userReducer, UserState, selectUserInfo, selectUserLoading, selectUserLoaded } from './users/user.reducer';
-import { ITodosState, todosReducer, selectTodosList, selectTodosLoading, selectTodosLoaded } from './todos/todos.reducer';
+import { ITodosState, todosReducer, selectTodosList, selectTodosLoading, selectTodosLoaded, selectTodosListTags } from './todos/todos.reducer';
 
 export interface IAppState {
 	users: UsersListState;
@@ -37,6 +37,9 @@ export const getUsersLoading = createSelector(getUsersListState, selectUsersList
 // Получаем части состояния списка пользователей
 // Получаем значение свойства loaded
 export const getUsersLoaded = createSelector(getUsersListState, selectUsersListLoaded);
+// Получаем части состояния списка пользователей
+// Получаем значение свойства query
+export const getFilterQuery = createSelector(getUsersListState, selectUsersListQuery);
 
 /*** Получаем состояние выбранного пользователя ***/
 export const getCurrentUserState = createSelector(
@@ -55,5 +58,6 @@ export const getTodosListState = createSelector(
 );
 
 export const getAllTodos = createSelector(getTodosListState, selectTodosList);
+export const getAllTodosTags = createSelector(getTodosListState, selectTodosListTags);
 export const getTodosListLoading = createSelector(getTodosListState, selectTodosLoading);
 export const getTodosListLoaded = createSelector(getTodosListState, selectTodosLoaded);
