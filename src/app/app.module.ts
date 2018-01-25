@@ -6,6 +6,21 @@ import { StoreModule } from '@ngrx/store';
 import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
 import { PagesModule } from './pages/pages.module';
+import { RouterModule, Routes } from '@angular/router';
+import { RoutesNames } from './pages/routes.enum';
+
+
+const ROUTES: Routes = [
+  {
+    path: '',
+    redirectTo: RoutesNames.USERS,
+    pathMatch: 'full'
+  },
+  {
+    path: RoutesNames.USERS,
+    loadChildren: './pages/pages.module#PagesModule'
+  }
+];
 
 
 @NgModule({
@@ -18,7 +33,8 @@ import { PagesModule } from './pages/pages.module';
     PagesModule,
     ComponentsModule,
     StoreModule.forRoot({}),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
+    RouterModule.forRoot(ROUTES)
   ],
   providers: [],
   bootstrap: [

@@ -14,12 +14,7 @@ import { UserInfoEffect } from '../store/effects/users/user.effects';
 import { TodosListEffect } from '../store/effects/todos/todos.effects';
 import { TodosUserInfoEffect } from '../store/effects/todos/user.effects';
 
-const routes: Routes = [
-  {
-    path: '',
-    redirectTo: RoutesNames.USERS,
-    pathMatch: 'full'
-  },
+const ROUTES: Routes = [
   {
     path: RoutesNames.USERS,
     component: UsersComponent
@@ -35,7 +30,7 @@ const routes: Routes = [
     AppService
   ],
   imports: [
-    RouterModule.forRoot(routes),
+    RouterModule.forChild(ROUTES),
     CommonModule,
     ComponentsModule,
     StoreModule.forFeature('app', reducers),
@@ -49,9 +44,6 @@ const routes: Routes = [
   declarations: [
     TodosComponent,
     UsersComponent
-  ],
-  exports: [
-    RouterModule
   ]
 })
 export class PagesModule { }
