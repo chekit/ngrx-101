@@ -1,14 +1,13 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule, Routes } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
 import { PagesModule } from './pages/pages.module';
-import { RouterModule, Routes } from '@angular/router';
 import { RoutesNames } from './pages/routes.enum';
-
 
 const ROUTES: Routes = [
   {
@@ -21,7 +20,6 @@ const ROUTES: Routes = [
     loadChildren: './pages/pages.module#PagesModule'
   }
 ];
-
 
 @NgModule({
   declarations: [
