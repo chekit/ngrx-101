@@ -21,7 +21,7 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
   ? [storeFreeze]
   : [];
 
-const routes: Routes = [
+const ROUTES: Routes = [
   {
     path: '',
     pathMatch: 'full',
@@ -29,7 +29,7 @@ const routes: Routes = [
   },
   {
     path: RoutesNames.USERS,
-    loadChildren: './pages/pages.module.ts#PagesModule'
+    loadChildren: './pages/pages.module#PagesModule'
   }
 ];
 
@@ -42,10 +42,10 @@ const routes: Routes = [
     HttpClientModule,
     PagesModule,
     ComponentsModule,
-    // RouterModule.forRoot(routes),
+    RouterModule.forRoot(ROUTES),
     StoreModule.forRoot({}, { metaReducers }),
     EffectsModule.forRoot([]),
-    // environment.development ? StoreDevtoolsModule.instrument() : [],
+    environment.development ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [],
   bootstrap: [

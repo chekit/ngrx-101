@@ -11,7 +11,7 @@ import { TodosComponent } from './todos/todos.component';
 import { UsersComponent } from './users/users.component';
 
 
-const routes: Routes = [
+const ROUTES: Routes = [
   {
     path: '',
     pathMatch: 'full',
@@ -35,7 +35,7 @@ const routes: Routes = [
     CommonModule,
     ComponentsModule,
 
-    RouterModule.forRoot(routes),
+    RouterModule.forChild(ROUTES),
 
     StoreModule.forFeature('app', fromStore.reducers),
     EffectsModule.forFeature(fromStore.effects)
