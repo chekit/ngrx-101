@@ -7,12 +7,7 @@ import { UsersComponent } from './users/users.component';
 import { RoutesNames } from './routes.enum';
 import { AppService } from '../app.service';
 
-const routes: Routes = [
-  {
-    path: '',
-    redirectTo: RoutesNames.USERS,
-    pathMatch: 'full'
-  },
+const ROUTES: Routes = [
   {
     path: RoutesNames.USERS,
     component: UsersComponent
@@ -28,16 +23,13 @@ const routes: Routes = [
     AppService
   ],
   imports: [
-    RouterModule.forRoot(routes),
+    RouterModule.forChild(ROUTES),
     CommonModule,
     ComponentsModule
   ],
   declarations: [
     TodosComponent, 
     UsersComponent
-  ],
-  exports: [
-    RouterModule
   ]
 })
 export class PagesModule { }
