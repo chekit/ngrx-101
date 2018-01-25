@@ -13,9 +13,9 @@
 
 Для получения необходимых данных используется сервис https://jsonplaceholder.typicode.com/
 
-> https://jsonplaceholder.typicode.com/users/<user id> - получение данных пользователя
+> https://jsonplaceholder.typicode.com/users/<user_id> - получение данных пользователя
 
-> https://jsonplaceholder.typicode.com/todos?userId=<user id> - получение всех дел пользователя
+> https://jsonplaceholder.typicode.com/todos?userId=<user_id> - получение всех дел пользователя
 
 > https://jsonplaceholder.typicode.com/todos - получение списка всех дел
 
