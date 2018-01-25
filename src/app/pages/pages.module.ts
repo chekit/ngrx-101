@@ -15,8 +15,7 @@ import { UsersComponent } from './users/users.component';
 const ROUTES: Routes = [
   {
     path: '',
-    pathMatch: 'full',
-    redirectTo: RoutesNames.USERS
+    component: UsersComponent
   },
   {
     path: RoutesNames.USERS,
