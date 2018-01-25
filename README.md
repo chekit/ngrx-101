@@ -1,8 +1,13 @@
 # Ngrx101
 
-> Демо-проект для демонстрации работы с ngrx/store в Angular. 
+> Демо-проект для демонстрации работы с *ngrx/store*, *ngrx/effects* в Angular. 
 
 Приложение предоставляет список пользователей и их дел.
+
+Каждая ветка - это определённый шаг работы над подключением к проекту ngrx/store.
+
+*master* - базовый проект без ngrx/store
+*final* - финальная версия проекта с ngrx/store
 
 ## API
 
@@ -13,3 +18,4 @@
 > https://jsonplaceholder.typicode.com/todos?userId=1 - получение всех дел пользователя
 
 > https://jsonplaceholder.typicode.com/todos - получение списка всех дел
+
