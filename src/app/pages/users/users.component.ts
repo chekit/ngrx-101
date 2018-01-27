@@ -8,7 +8,6 @@ import { Subscription } from 'rxjs/Subscription';
 import { AppService } from '../../app.service';
 import { UserInfoModel } from '../../models/users/user-info.model';
 import { IUser, UserModel } from '../../models/users/user.model';
-import { UsersModel } from '../../models/users/users.model';
 import * as fromStore from '../../store/index';
 
 @Component({
@@ -37,15 +36,15 @@ export class UsersComponent implements OnInit, OnDestroy {
     private appService: AppService,
     private store: Store<fromStore.IAppState>
   ) {
-    this.users$ = this.store.select<any>(fromStore.selectAllUsers);
-    this.query$ = this.store.select<any>(fromStore.selectUsersFilterQuery);
+    this.users$ = this.store.select<UserModel[]>(fromStore.selectAllUsers);
+    this.query$ = this.store.select<string>(fromStore.selectUsersFilterQuery);
 
-    this.loadingUsers$ = this.store.select<any>(fromStore.selectUsersLoading);
-    this.loadedUsers$ = this.store.select<any>(fromStore.selectUsersLoaded);
+    this.loadingUsers$ = this.store.select<boolean>(fromStore.selectUsersLoading);
+    this.loadedUsers$ = this.store.select<boolean>(fromStore.selectUsersLoaded);
     
-    this.current$ = this.store.select<any>(fromStore.selectCurrentUser);
-    this.loadingCurrent$ = this.store.select<any>(fromStore.selectCurrentUserLoading);
-    this.loadedCurrent$ = this.store.select<any>(fromStore.selectCurrentUserLoaded);
+    this.current$ = this.store.select<UserInfoModel>(fromStore.selectCurrentUser);
+    this.loadingCurrent$ = this.store.select<boolean>(fromStore.selectCurrentUserLoading);
+    this.loadedCurrent$ = this.store.select<boolean>(fromStore.selectCurrentUserLoaded);
   }
 
   ngOnInit() {

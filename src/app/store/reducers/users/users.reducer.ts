@@ -1,7 +1,6 @@
+import { UserInfoModel } from '../../../models/users/user-info.model';
 import { UserModel } from '../../../models/users/user.model';
 import { UsersActions, UsersListActions } from '../../actions/users/users.action';
-import { UsersModel } from '../../../models/users/users.model';
-import { UserInfoModel } from '../../../models/users/user-info.model';
 
 export interface IUsersListState {
 	data: UserModel[];

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { UserModel } from '../../../models/users/user.model';
 
 @Component({
   selector: 'app-user',
@@ -6,7 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-  @Input() public model: any;
+  @Input() public model: UserModel;
   @Input() public isCurrent: boolean = false;
 
   @Output() userSelected: EventEmitter<number> = new EventEmitter();

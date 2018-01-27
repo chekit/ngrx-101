@@ -1,7 +1,6 @@
 import { Action } from '@ngrx/store';
-import { UserModel } from '../../../models/users/user.model';
-import { UsersModel } from '../../../models/users/users.model';
 import { UserInfoModel } from '../../../models/users/user-info.model';
+import { UserModel } from '../../../models/users/user.model';
 
 export enum UsersListActions {
 	LOAD_USERS = '[Users] Load users list',

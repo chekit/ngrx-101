@@ -1,18 +1,17 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
+import { Subject } from 'rxjs/Subject';
+import { Subscription } from 'rxjs/Subscription';
 import { AppService } from '../../app.service';
 import { ICurrentTodo } from '../../components/todos-list/todos-item/todos-item.component';
 import { TodoInfoModel } from '../../models/todos/todo-info.model';
 import { ITodo, TodoModel } from '../../models/todos/todo.model';
-import { TodosModel } from '../../models/todos/todos.model';
 import { UserInfoModel } from '../../models/users/user-info.model';
 import { UserModel } from '../../models/users/user.model';
-
 import * as fromStore from '../../store/index';
-import { Subject } from 'rxjs/Subject';
-import { Subscription } from 'rxjs/Subscription';
+
 
 @Component({
   selector: 'app-user-todos',
@@ -38,15 +37,15 @@ export class TodosComponent implements OnInit, OnDestroy {
     private appService: AppService,
     private store: Store<fromStore.IAppState>
   ) {
-    this.todos$ = this.store.select<any>(fromStore.selectAllTodos);
-    this.loadingTodos$ = this.store.select<any>(fromStore.selectTodosListLoading);
-    this.loadedTodos$ = this.store.select<any>(fromStore.selectTodosListLoaded);
+    this.todos$ = this.store.select<TodoModel[]>(fromStore.selectAllTodos);
+    this.loadingTodos$ = this.store.select<boolean>(fromStore.selectTodosListLoading);
+    this.loadedTodos$ = this.store.select<boolean>(fromStore.selectTodosListLoaded);
 
-    this.tags$ = this.store.select<any>(fromStore.selectAllTodosTags);
+    this.tags$ = this.store.select<Set<string>>(fromStore.selectAllTodosTags);
 
-    this.current$ = this.store.select<any>(fromStore.selectCurrentUser);
-    this.loadingCurrent$ = this.store.select<any>(fromStore.selectCurrentUserLoading);
-    this.loadedCurrent$ = this.store.select<any>(fromStore.selectCurrentUserLoaded);
+    this.current$ = this.store.select<UserInfoModel>(fromStore.selectCurrentUser);
+    this.loadingCurrent$ = this.store.select<boolean>(fromStore.selectCurrentUserLoading);
+    this.loadedCurrent$ = this.store.select<boolean>(fromStore.selectCurrentUserLoaded);
   }
 
   ngOnInit() {

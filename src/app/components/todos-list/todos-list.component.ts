@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { ICurrentTodo } from './todos-item/todos-item.component';
-import { TodosModel } from '../../models/todos/todos.model';
+// import { TodosModel } from '../../models/todos/todos.model';
 import { TodoModel } from '../../models/todos/todo.model';
 import { UserInfoModel } from '../../models/users/user-info.model';
 
@@ -14,14 +14,14 @@ export class TodosListComponent implements OnInit {
   @Input() public model: TodoModel[];
   @Input() public current: UserInfoModel;
 
-  @Output() selectTodo: EventEmitter<any> = new EventEmitter();
+  @Output() selectTodo: EventEmitter<TodoModel> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  public trackById(index: number, item: any): number {
+  public trackById(index: number, item: TodoModel): number {
     return item.id;
   } 
 

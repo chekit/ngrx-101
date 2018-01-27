@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
-import { UsersModel } from '../../models/users/users.model';
+// import { UsersModel } from '../../models/users/users.model';
 import { UserModel } from '../../models/users/user.model';
 import { UserInfoModel } from '../../models/users/user-info.model';
 
