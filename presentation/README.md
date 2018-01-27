@@ -2,7 +2,7 @@
 
 Ссылка на презентацию по теме: https://yadi.sk/d/6K7Ont5o3Rpuvn
 
-## Полезный ссылки
+## Полезные ссылки
 
 - Курс от Todd Motto по ngrx https://ultimateangular.com/ngrx-store-effects
 
