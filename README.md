@@ -21,3 +21,6 @@
 
 > https://jsonplaceholder.typicode.com/users - получение списка всех пользователей
 
+## Презентация
+
+[Управление состоянием в Angular 101](./Managing_state_Angular_101.pdf)
